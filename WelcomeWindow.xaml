@@ -1,0 +1,67 @@
+﻿<Window x:Class="WpfDemo.WelcomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo"
+        mc:Ignorable="d"
+        Title="Welcome Window" Height="550" Width="800"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+        <StackPanel
+            Grid.Column="1"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Panel.ZIndex="1"
+            VerticalAlignment="Top"
+            
+            >
+            <TextBlock 
+            Style="{StaticResource Title}"
+            Margin="0,80,0,20"
+            Height="50"
+            FontFamily="Candara"
+            ><Run Text="Welcome to "/><Span FontFamily="Segoe Print" FontWeight="Bold"><Run Text="Diaries"/></Span></TextBlock>
+            <TextBlock
+                Style="{StaticResource normalText}"
+                Margin="5,0,5,0"
+                Width="305"
+                ><Run Text="Have new ideas jot it down now!"/></TextBlock>
+            <Button 
+                Content="Sign In Now!"
+                Margin="25,30,5,5"
+                Click="Navigate_To_Signin"
+                Style="{StaticResource primaryBtn}"
+                    />
+            
+        </StackPanel>
+        <Image
+            Grid.Column="1"
+            Grid.Row="1"
+           
+            Grid.RowSpan="2"
+            VerticalAlignment="Center"
+            Source="C:\Users\lnoor\source\repos\WpfDemo\WpfDemo\Images\Character-Thinking.jpg" 
+            Grid.ColumnSpan="3" 
+            Margin="197,10,54,0" 
+            Height="298" 
+            RenderTransformOrigin="0.701,0.62"
+        />
+    </Grid>
+
+</Window>
