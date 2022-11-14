@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UserDiaryUI
+namespace UserDiaryUI.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SignInPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SignInPage : Page
     {
-        public MainWindow()
+        public SignInPage()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
