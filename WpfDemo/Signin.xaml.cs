@@ -18,11 +18,11 @@ namespace WpfDemo
     /// <summary>
     /// Interaction logic for Page2.xaml
     /// </summary>
-    public partial class Page2 : Page
+    public partial class Signin : Page
     {
-        public Page2()
+        public Signin()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }
