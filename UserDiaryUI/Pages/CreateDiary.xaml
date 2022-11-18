@@ -1,0 +1,97 @@
+﻿<Window x:Class="UserDiaryUI.Pages.CreateDiary"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UserDiaryUI.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=local:CreateDiaryViewModel}"
+        mc:Ignorable="d" Width="450" Height="450"
+      WindowStyle="None"
+      Title="CreateDiary"
+      ResizeMode="CanResize"
+      AllowsTransparency="True">
+    <Border
+                BorderBrush="{StaticResource grayColor}"
+                BorderThickness="1"
+                Width="450"
+                HorizontalAlignment="Center"
+                Background="{StaticResource lightColor}"
+                Padding="20"
+                >
+        <StackPanel>
+            <StackPanel
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+                <TextBlock
+                            FontWeight="SemiBold"
+                            FontSize="25"
+                            Text="Create New Diary"
+                                />
+                <Button
+                            Click="Cancel_Click"
+                            Margin="0,0, -400, 0"
+                            VerticalAlignment="Center"
+                            BorderThickness="0"
+                            Width="15"
+                            Background="Transparent">
+                    <Image
+                                Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\close-icon.png" RenderTransformOrigin="-1.549,0.99"
+                                />
+                </Button>
+            </StackPanel>
+
+            <StackPanel
+                        Margin="10">
+                <StackPanel>
+                    <Label 
+                                Content="Title:"
+                                Foreground="{StaticResource grayColor}"
+                                FontWeight="Medium"
+                                Target="{Binding ElementName=Title}"
+                                />
+                    <TextBox
+                                Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                                x:Name="Title"
+                                />
+                </StackPanel>
+                <StackPanel>
+                    <Label 
+                                Content="Content:"
+                                Foreground="{StaticResource grayColor}"
+                                FontWeight="Medium"
+                                Target="{Binding ElementName=Content}"
+                                />
+                    <Border
+                                BorderBrush="#FFABADB3"
+                    
+                                BorderThickness="1"
+                                >
+                        <ScrollViewer>
+                            <TextBox
+                                        Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}"
+                                        x:Name="Content"
+                                        AcceptsReturn="True"
+                                        AcceptsTab="True"
+                                        BorderThickness="0"
+                                        TextWrapping="Wrap"
+                                        MaxLines="2000000"
+                                        FontFamily="Calibri Light"
+                                        Height="200"
+                                        Padding="20"
+                                        FontSize="14"
+                                        />
+                        </ScrollViewer>
+                    </Border>
+
+                </StackPanel>
+                <Button
+                            Command="{Binding CreateDiaryCommand}"
+                            Margin= "0, 20"
+                            HorizontalAlignment="Right"
+                            Style="{StaticResource primaryBtn}"
+                            Content="Create"
+                            />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,18 +13,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UserDiaryUI.ViewModels;
+using UserDiaryUI.Views;
 
-namespace UserDiaryUI
+namespace UserDiaryUI.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for CreateDiary.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CreateDiary : Window
     {
-        public MainWindow()
+        public CreateDiary()
         {
             InitializeComponent();
-            
+            DataContext = new CreateDiaryViewModel();
         }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
     }
 }

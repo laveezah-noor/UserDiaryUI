@@ -3,8 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UserDiaryUI"
+        xmlns:views="clr-namespace:UserDiaryUI.Pages" 
+        xmlns:viewmodels="clr-namespace:UserDiaryUI.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="800">
-    <Frame Source="Pages\WelcomePage.xaml"/>
+        Icon="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\Diary Icon.png"
+        Title="Diaries" Height="550" Width="800">
+    <views:LoginPage DataContext="{Binding CurrentViewModel}"/>
+    <!--<Frame Source="Pages\WelcomePage.xaml" NavigationUIVisibility="Hidden"/>-->
 </Window>

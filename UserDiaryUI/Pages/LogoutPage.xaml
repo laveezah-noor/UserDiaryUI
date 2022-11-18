@@ -1,0 +1,266 @@
+﻿<Page x:Class="UserDiaryUI.Pages.LogoutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UserDiaryUI.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LogoutPage"
+      Background="Blue"
+      >
+    <Border
+        
+        BorderBrush="{StaticResource grayColor}"
+        BorderThickness="1"    
+        Width="400"
+        HorizontalAlignment="Center"
+        Background="{StaticResource lightColor}"
+        Padding="20"
+        >
+
+        <StackPanel
+        >
+            <StackPanel
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <TextBlock
+                
+            FontWeight="SemiBold"
+            FontSize="25"
+            Text="Create New User"
+                />
+                <Button
+                    Margin="0,0, -320, 0"
+                    VerticalAlignment="Center"
+                    BorderThickness="0"
+                Width="15"
+                Background="Transparent">
+                    <Image
+                    Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\close-icon.png" RenderTransformOrigin="-1.549,0.99"
+                    />
+                </Button>
+            </StackPanel>
+            <StackPanel
+                Margin="10">
+                <StackPanel 
+                HorizontalAlignment="Left">
+                    <Label
+                Foreground="Gray"
+                FontWeight="DemiBold" Width="160"
+                >Account Type:</Label>
+                    <ComboBox
+                Width="150"
+                VerticalAlignment="Center"
+                BorderBrush="LightGray"
+                BorderThickness="1" 
+                >
+                        <ComboBoxItem Content="Admin"/>
+                        <ComboBoxItem Content="User"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel 
+                HorizontalAlignment="Left">
+                    <Label
+                Foreground="Gray"
+                FontWeight="DemiBold" Width="160"
+                > Name:</Label>
+                    <TextBox 
+                Width="150"
+                VerticalAlignment="Center"
+                BorderBrush="LightGray"
+                BorderThickness="1" 
+                />
+                </StackPanel>
+                <StackPanel 
+            HorizontalAlignment="Left">
+                    <Label
+                Foreground="Gray"
+                FontWeight="DemiBold" Width="160"
+                > Username:</Label>
+                    <TextBox 
+                IsReadOnly="True"
+                Width="150"
+                VerticalAlignment="Center"
+                BorderBrush="LightGray"
+                BorderThickness="1" 
+                />
+                </StackPanel>
+                <StackPanel 
+            HorizontalAlignment="Left">
+                    <Label
+                Foreground="Gray"
+                FontWeight="DemiBold" Width="160"
+                > Email:</Label>
+                    <TextBox 
+                Width="150"
+                VerticalAlignment="Center"
+                BorderBrush="LightGray"
+                BorderThickness="1" 
+                />
+                </StackPanel>
+
+                <StackPanel 
+            HorizontalAlignment="Left">
+                    <Label
+                Foreground="Gray"
+                FontWeight="DemiBold" Width="160"
+                > Phone Number:</Label>
+                    <TextBox 
+                IsReadOnly="True"
+                Width="150"
+                VerticalAlignment="Center"
+                BorderBrush="LightGray"
+                BorderThickness="1" 
+                />
+                </StackPanel>
+                <StackPanel 
+            HorizontalAlignment="Left">
+                    <Label
+                Foreground="Gray"
+                FontWeight="DemiBold" Width="160"
+                > Password:</Label>
+                    <TextBox 
+                Width="150"
+                VerticalAlignment="Center"
+                BorderBrush="LightGray"
+                BorderThickness="1" 
+                />
+                </StackPanel>
+                <StackPanel 
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left">
+                    <Label
+                Foreground="Gray"
+                FontWeight="DemiBold"
+                >Authorized:</Label>
+                    <CheckBox Height="15"
+                          />
+                </StackPanel>
+                <Button
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Style="{StaticResource primaryBtn}"
+            Content="Create"    
+            />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+    <!--<Border
+        Margin="50, 20"
+        Width="450"
+        HorizontalAlignment="Center"
+        Background="{StaticResource lightColor}"
+        Padding="20"
+        >
+        
+    <StackPanel
+        >
+            <StackPanel
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <TextBlock
+                
+            FontWeight="SemiBold"
+            FontSize="25"
+            Text="Create New Diary"
+                />
+                <Button
+                    Margin="0,0, -400, 0"
+                    VerticalAlignment="Center"
+                    BorderThickness="0"
+                Width="15"
+                Background="Transparent">
+                    <Image
+                    Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\close-icon.png" RenderTransformOrigin="-1.549,0.99"
+                    />
+                </Button>
+            </StackPanel>
+            
+            <StackPanel
+                Margin="10">
+                <StackPanel>
+                    <Label 
+                Content="Title:"
+                Foreground="{StaticResource grayColor}"
+                FontWeight="Medium"
+                Target="{Binding ElementName=Title}"
+                />
+                    <TextBox
+                    x:Name="Title"
+                    />
+                </StackPanel>
+                <StackPanel>
+                    <Label 
+                Content="Content:"
+                Foreground="{StaticResource grayColor}"
+                FontWeight="Medium"
+                Target="{Binding ElementName=Content}"
+                />
+                    <Border
+                    BorderBrush="#FFABADB3"
+                    
+                    BorderThickness="1"
+                    >
+                        <ScrollViewer>
+                            <TextBox
+                        x:Name="Content"
+                        AcceptsReturn="True"
+                        AcceptsTab="True"
+                        BorderThickness="0"
+                        TextWrapping="Wrap"
+                        MaxLines="2000000"
+                        FontFamily="Calibri Light"
+                        Height="200"
+                        Padding="20"
+                        FontSize="14"
+                        />
+                        </ScrollViewer>
+                    </Border>
+
+                </StackPanel>
+                <Button
+                Margin= "0, 20"
+                HorizontalAlignment="Right"
+                Style="{StaticResource primaryBtn}"
+                Content="Create"
+                />
+            </StackPanel>
+            
+        </StackPanel>
+    </Border>-->
+    <!--<StackPanel
+        Width="400"
+        Height="130"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Background="White">
+        <TextBlock
+            Margin="0,20"
+            TextAlignment="Center"
+            FontSize="20"
+            Text="Are You Sure you want to Logout?"
+            />
+        <StackPanel
+            Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Button
+                Margin="5,0"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Style="{StaticResource primaryBtn}"
+            Content="Logout"    
+            />
+            <Button
+                Margin="5,0"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Grid.ColumnSpan="2"
+                Style="{StaticResource secondaryBtn}"
+            Content="Cancel"    
+            />
+        </StackPanel>
+    </StackPanel>-->
+</Page>

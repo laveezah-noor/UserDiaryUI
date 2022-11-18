@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UserDiaryUI
+namespace UserDiaryUI.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LogoutPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LogoutPage : Page
     {
-        public MainWindow()
+        public LogoutPage()
         {
             InitializeComponent();
-            
         }
     }
 }

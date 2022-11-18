@@ -8,7 +8,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Reference Include="UserDiary">
+      <HintPath>..\..\UserDiary\UserDiary\bin\Debug\net6.0\UserDiary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  
+
+  <ItemGroup>
+    <Compile Update="Pages\UsersPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\UsersPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>
