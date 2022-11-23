@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Components\NavigationBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\CreateDiary.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -36,10 +39,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Components\NavigationBar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\CreateDiary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\LogoutPage.xaml">
@@ -52,9 +61,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\DiaryPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\LandingPage.xaml">
