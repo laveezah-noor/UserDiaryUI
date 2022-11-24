@@ -35,9 +35,13 @@
             <DataTemplate DataType="{x:Type viewmodels:UserProfileViewModel}">
                 <views:ProfilePage/>
             </DataTemplate>
+        
+            <DataTemplate DataType="{x:Type viewmodels:UsersViewModel}">
+                <views:UsersPage/>
+            </DataTemplate>
 
-         
-            
+
+
         </ContentControl.Resources>
         <!--<ContentControl Content="{Binding CurrentViewModel}"/>-->
     </ContentControl>

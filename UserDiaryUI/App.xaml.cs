@@ -62,7 +62,9 @@ namespace UserDiaryUI
 
         private INavigationService<LoginViewModel> CreateLoginViewModel()
         {
-            return new NavigationService<LoginViewModel>(_navigationStore, () => new LoginViewModel(CreateSigninViewModel(), CreateHomeViewModel()));
+            //return new NavigationService<LoginViewModel>(_navigationStore, () => new LoginViewModel(CreateSigninViewModel(), CreateHomeViewModel()));
+
+            return new NavigationService<LoginViewModel>(_navigationStore, () => new LoginViewModel(CreateSigninViewModel(), CreateUserViewModel()));
         }
         
         private INavigationService<SigninViewModel> CreateSigninViewModel()
@@ -82,11 +84,11 @@ namespace UserDiaryUI
         
         private INavigationService<UserProfileViewModel> CreateProfileViewModel()
         {
-            return new AppNavigationService<UserProfileViewModel>(_navigationStore, CreateLoginViewModel(), () => new UserProfileViewModel(), navigationBarViewModel);
+            return new AppNavigationService<UserProfileViewModel>(_navigationStore, CreateLoginViewModel(), () => new UserProfileViewModel(_cache), navigationBarViewModel);
         }
-        private INavigationService<UserViewModel> CreateUserViewModel()
+        private INavigationService<UsersViewModel> CreateUserViewModel()
         {
-            return new AppNavigationService<UserViewModel>(_navigationStore, CreateLoginViewModel(), () => new UserViewModel(), navigationBarViewModel);
+            return new AppNavigationService<UsersViewModel>(_navigationStore, CreateLoginViewModel(), () => new UsersViewModel(_cache), navigationBarViewModel);
         }
     }
 }
