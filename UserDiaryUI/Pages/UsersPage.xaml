@@ -1,12 +1,12 @@
-﻿<Page x:Class="UserDiaryUI.Pages.UsersPage"
+﻿<UserControl x:Class="UserDiaryUI.Pages.UsersPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:UserDiaryUI.Pages"
-      mc:Ignorable="d" 
+      xmlns:local="clr-namespace:UserDiaryUI.Pages" xmlns:viewmodels="clr-namespace:UserDiaryUI.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:UsersViewModel}"
+             mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="750"
-      Title="UsersPage"
       Name="usersPage">
 
     <Grid Background="White">
@@ -75,30 +75,68 @@
             </StackPanel>
         </Border>
         <ListView
-                Grid.Row="2"
-                Margin="5" 
-                Name="lstProducts">
-
+            d:DataContext="{d:DesignInstance Type=viewmodels:UsersViewModel}"
+            Grid.Row="2"
+                Margin="5,10,5,0" 
+                Name="listUsers" 
+            d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn 
+                                Width="50"
                                 Header="S.No"
-                                DisplayMemberBinding="{Binding Path=ModelNumber}" />
+                                DisplayMemberBinding="{Binding Id}" />
                         <GridViewColumn 
+                                Width="120"
                                 Header="Name"
-                                DisplayMemberBinding="{Binding Path=ModelName}" />
+                                DisplayMemberBinding="{Binding Name}" />
                         <GridViewColumn 
-                                Header="Username" />
+                                Width="120"
+                                Header="Username" 
+                            DisplayMemberBinding="{Binding UserName}"/>
                         <GridViewColumn 
+                                Width="120"
                                 Header="Email" 
-                                DisplayMemberBinding= "{Binding Path=UnitCost, StringFormat={}{0:C}}" />
+                                DisplayMemberBinding= "{Binding Email, StringFormat={}{0:C}}" />
                         <GridViewColumn 
+                                Width="120"
                                 Header="Phone" 
-                                DisplayMemberBinding= "{Binding Path=UnitCost, StringFormat={}{0:C}}" />
+                                DisplayMemberBinding= "{Binding Phone, StringFormat={}{0:C}}" />
                         <GridViewColumn 
+                                Width="100"
                                 Header="Status" 
-                                DisplayMemberBinding= "{Binding Path=UnitCost, StringFormat={}{0:C}}" />
+                                DisplayMemberBinding= "{Binding Status, StringFormat={}{0:C}}" />
+                        <GridViewColumn 
+                            Header="Options"
+                            Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel
+                                        Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button 
+                                        Width="40"
+                                        FontSize="12"
+                                        Style="{StaticResource primaryBtn}"
+                                        Content="Edit" 
+                                        Margin="2"
+                                        Click="CreateNew_Popup"
+                                        />
+                                        <Button 
+                                        Width="40"
+                                        FontSize="12"
+                                        Style="{StaticResource secondaryBtn}"
+                                        Margin="2" 
+                                            Content="Delete" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
                     </GridView.Columns>
 
@@ -112,146 +150,7 @@
             Placement="Center" 
             
             >
-            <Border
-        
-        BorderBrush="{StaticResource grayColor}"
-        BorderThickness="1"    
-        Width="400"
-        HorizontalAlignment="Center"
-        Background="{StaticResource lightColor}"
-        Padding="20"
-        >
-
-                <StackPanel
-        >
-                    <StackPanel
-                VerticalAlignment="Center"
-                Orientation="Horizontal">
-                        <TextBlock
-                
-            FontWeight="SemiBold"
-            FontSize="25"
-            Text="Create New User"
-                />
-                        <Button
-                    Click="Cancel_Click"
-                    Margin="0,0, -320, 0"
-                    VerticalAlignment="Center"
-                    BorderThickness="0"
-                Width="15"
-                Background="Transparent">
-                            <Image
-                    Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\close-icon.png" RenderTransformOrigin="-1.549,0.99"
-                    />
-                        </Button>
-                    </StackPanel>
-                    <StackPanel
-                Margin="10">
-                        <StackPanel 
-                HorizontalAlignment="Left">
-                            <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Account Type:</Label>
-                            <ComboBox
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1"
-                >
-                                <ComboBoxItem Content="Admin"/>
-                                <ComboBoxItem Content="User"/>
-                            </ComboBox>
-                        </StackPanel>
-
-                        <StackPanel 
-                HorizontalAlignment="Left">
-                            <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Name:</Label>
-                            <TextBox 
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1" 
-                />
-                        </StackPanel>
-                        <StackPanel 
-            HorizontalAlignment="Left">
-                            <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Username:</Label>
-                            <TextBox 
-                IsReadOnly="True"
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1" 
-                />
-                        </StackPanel>
-                        <StackPanel 
-            HorizontalAlignment="Left">
-                            <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Email:</Label>
-                            <TextBox 
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1" 
-                />
-                        </StackPanel>
-
-                        <StackPanel 
-            HorizontalAlignment="Left">
-                            <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Phone Number:</Label>
-                            <TextBox 
-                IsReadOnly="True"
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1" 
-                />
-                        </StackPanel>
-                        <StackPanel 
-            HorizontalAlignment="Left">
-                            <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Password:</Label>
-                            <TextBox 
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1" 
-                />
-                        </StackPanel>
-                        <StackPanel 
-            Orientation="Horizontal"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Left">
-                            <Label
-                Foreground="Gray"
-                FontWeight="DemiBold"
-                >Authorized:</Label>
-                            <CheckBox Height="15"
-                          />
-                        </StackPanel>
-                        <Button
-            VerticalAlignment="Center"
-            HorizontalAlignment="Right"
-            Style="{StaticResource primaryBtn}"
-            Content="Create"    
-            />
-                    </StackPanel>
-                </StackPanel>
-            </Border>
+            <ContentControl DataContext="{Binding _modalUserViewModel}"/>
         </Popup>
     </Grid>
-</Page>
+</UserControl>

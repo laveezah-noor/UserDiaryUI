@@ -27,36 +27,36 @@ namespace UserDiaryUI.Pages
     /// <summary>
     /// Interaction logic for LandingPage.xaml
     /// </summary>
-    public partial class LandingPage : Page
+    public partial class LandingPage : UserControl
     {
         public LandingPage()
         {
             InitializeComponent();
         }
 
-        private void Navigate_to_Page(object sender, MouseButtonEventArgs e)
+        private void Navigate_to_Page(object sender, RoutedEventArgs e)
         {
-            if (((Image)sender).Tag.ToString() == Pages.HomePage.ToString())
+            if (((Button)sender).Tag.ToString() == Pages.HomePage.ToString())
             {
                 SubWindow.Source = new Uri("./HomePage.xaml", UriKind.Relative);
             }
-            else if (((Image)sender).Tag.ToString() == Pages.DiaryPage.ToString())
+            else if (((Button)sender).Tag.ToString() == Pages.DiaryPage.ToString())
             {
                 SubWindow.Source = new Uri("./DiaryPage.xaml", UriKind.Relative);
             }
-            else if (((Image)sender).Tag.ToString() == Pages.UsersPage.ToString())
+            else if (((Button)sender).Tag.ToString() == Pages.UsersPage.ToString())
             {
                 SubWindow.Source = new Uri("./UsersPage.xaml", UriKind.Relative);
             }
-            else if (((Image)sender).Tag.ToString() == Pages.UsersDiaryPage.ToString())
+            else if (((Button)sender).Tag.ToString() == Pages.UsersDiaryPage.ToString())
             {
                 SubWindow.Source = new Uri("./DiaryPage.xaml", UriKind.Relative);
             }
-            else if (((Image)sender).Tag.ToString() == Pages.AdminsPage.ToString())
+            else if (((Button)sender).Tag.ToString() == Pages.AdminsPage.ToString())
             {
                 SubWindow.Source = new Uri("./UsersPage.xaml", UriKind.Relative);
             }
-            else if (((Image)sender).Tag.ToString() == Pages.ProfilePage.ToString())
+            else if (((Button)sender).Tag.ToString() == Pages.ProfilePage.ToString())
             {
                 SubWindow.Source = new Uri("./ProfilePage.xaml", UriKind.Relative);
             }
@@ -71,19 +71,22 @@ namespace UserDiaryUI.Pages
             this.Background = Brushes.LightGray; 
             logoutPopUp.IsOpen = true;
         }
-        private void Logout_Click(object sender, RoutedEventArgs e)
-        {
-            // Copy name from the Popup into the main page. lblName.Content = "You entered: " + txtName.Text; EnableMainPage();
-        }
+        
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             EnableMainPage();
         }
+        
         private void EnableMainPage()
         {
             MainPage.IsEnabled = true; 
             this.Background = null; 
             logoutPopUp.IsOpen = false;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,13 +1,11 @@
-﻿<Page x:Class="UserDiaryUI.Views.SignInPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:UserDiaryUI.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="SignInPage"
-      Background="White">
+﻿<UserControl x:Class="UserDiaryUI.Pages.SignInPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,9 +20,9 @@
         </Grid.RowDefinitions>
         <Border
             Grid.Row="1"
-            BorderBrush="Gray" 
-            BorderThickness="1" 
-            Background="White" 
+            BorderBrush="Gray"
+            BorderThickness="1"
+            Background="White"
             Grid.Column="1"
             CornerRadius="10"
             >
@@ -35,7 +33,7 @@
         <Border
             Grid.Column="1"
             Grid.Row="1"
-            
+
             >
 
             <Grid>
@@ -46,14 +44,14 @@
                 <Border
                     Grid.Column="1"
                     CornerRadius="0,10,10,0">
-                   
+
                     <Image
-                    VerticalAlignment="Center"
-                    Width="300"
-                    Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\Character-Signin.jpg"
-                    HorizontalAlignment="Center"
-                    Grid.Column="1"
-                    />
+                        VerticalAlignment="Center"
+                        Width="300"
+                        Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\Character-Signin.jpg"
+                        HorizontalAlignment="Center"
+                        Grid.Column="1"
+                        />
                 </Border>
                 <Border
                     Grid.Column="0"
@@ -65,7 +63,7 @@
                         </LinearGradientBrush>
                     </Border.Background>
                     <StackPanel
-                        
+
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Panel.ZIndex="1">
@@ -75,14 +73,14 @@
                             Foreground="White"
                             FontSize="30"
                             TextAlignment="Center"
-                            Text="Create an Account" 
-                            FontWeight="Bold" 
+                            Text="Create an Account"
+                            FontWeight="Bold"
                             FontFamily="Bahnschrift SemiBold"/>
                         <!--Inputs-->
                         <StackPanel
                             HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        >
+                            VerticalAlignment="Center"
+                            >
 
                             <Border
                                 Style="{StaticResource InputBoxBorder}">
@@ -90,9 +88,10 @@
                                     Style="{StaticResource InputBox}">
                                     <Label>Name:</Label>
                                     <TextBox Width="150"
-                                 VerticalAlignment="Center"
-                                 BorderThickness="0" 
-                                        TextChanged="TextBox_TextChanged_1"/>
+                                             VerticalAlignment="Center"
+                                             BorderThickness="0"
+                                             Text="{Binding Name}"
+                                             />
                                 </StackPanel>
                             </Border>
 
@@ -102,8 +101,10 @@
                                     Style="{StaticResource InputBox}">
                                     <Label>User Name:</Label>
                                     <TextBox Width="150"
-                                 VerticalAlignment="Center"
-                                 BorderThickness="0" TextChanged="TextBox_TextChanged_1"/>
+                                             VerticalAlignment="Center"
+                                             BorderThickness="0"
+                                             Text="{Binding UserName}"
+                                             />
                                 </StackPanel>
                             </Border>
                             <Border
@@ -111,9 +112,10 @@
                                 <StackPanel
                                     Style="{StaticResource InputBox}">
                                     <Label>Password:</Label>
-                                    <PasswordBox Width="150"
-                                 VerticalAlignment="Center"
-                                 BorderThickness="0"/>
+                                    <TextBox Width="150"
+                                             VerticalAlignment="Center"
+                                             BorderThickness="0"
+                                             Text="{Binding Password}"/>
                                 </StackPanel>
                             </Border>
 
@@ -124,8 +126,9 @@
                                     Style="{StaticResource InputBox}">
                                     <Label>Email:</Label>
                                     <TextBox Width="150"
-                                 VerticalAlignment="Center"
-                                 BorderThickness="0" TextChanged="TextBox_TextChanged_1"/>
+                                             VerticalAlignment="Center"
+                                             BorderThickness="0"
+                                             Text="{Binding Email}"/>
                                 </StackPanel>
                             </Border>
 
@@ -135,27 +138,34 @@
                                     Style="{StaticResource InputBox}">
                                     <Label>Phone:</Label>
                                     <TextBox Width="150"
-                                 VerticalAlignment="Center"
-                                 BorderThickness="0" TextChanged="TextBox_TextChanged_1"/>
+                                             VerticalAlignment="Center"
+                                             BorderThickness="0"
+                                             Text="{Binding Phone}"/>
                                 </StackPanel>
                             </Border>
-                            <TextBlock
-                                Margin="5"
-                                Foreground="White"
-                                >Already a user? 
-                                <Hyperlink
-                                    NavigateUri="LoginPage.xaml"
-                                    TextDecorations="None"
-                                    Foreground="#FFCAE4FF" FontWeight="Bold"
-                                    >Log In.</Hyperlink></TextBlock>
+                            <StackPanel Orientation="Horizontal"
+                                        VerticalAlignment="Center"
+                                        >
+                                <TextBlock
+                                    Margin="5"
+                                    Foreground="White"
+                                    Text="Already a user?"/>
+                                <Button
+                                    Command="{Binding ViewLoginCommand}"
+                                    Style="{StaticResource textBtn}"
+                                    >Log In.</Button>
+                            </StackPanel>
 
                             <Button
+                                Command="{Binding SigninCommand}"
                                 Style="{StaticResource primaryBtn}">
-                                <Hyperlink
-                                    NavigateUri="LandingPage.xaml"
-                                    TextDecorations="None"
-                                    Foreground="#FFCAE4FF"
-                                    >Register</Hyperlink>
+                                <!--<Hyperlink
+                                NavigateUri="LandingPage.xaml"
+                                TextDecorations="None"
+                                Foreground="#FFCAE4FF"
+                                >-->
+                                Register
+                                <!--</Hyperlink>-->
                             </Button>
                         </StackPanel>
                     </StackPanel>
@@ -164,5 +174,4 @@
         </Border>
 
     </Grid>
-</Page>
-    
+</UserControl>

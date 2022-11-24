@@ -1,13 +1,11 @@
-﻿<Page x:Class="UserDiaryUI.Pages.ProfilePage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:UserDiaryUI.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProfilePage">
-
+﻿<UserControl x:Class="UserDiaryUI.Pages.ProfilePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UserDiaryUI.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource neutralColor}"
           >
         <Grid.ColumnDefinitions>
@@ -20,9 +18,9 @@
             Background="{StaticResource lightColor}"
             BorderBrush="{StaticResource grayColor}"
             CornerRadius="10"
-                    Grid.Column="1"
+            Grid.Column="1"
             >
-        
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -38,126 +36,136 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            FontSize="25"
-            FontFamily="Bahnschrift Light"
-           Text="Profile"/>
-                <StackPanel 
-            Orientation="Vertical"
-            Grid.Row="1"
-            Grid.Column="0"
-            Margin="30,0"
-            HorizontalAlignment="Left">
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="25"
+                    FontFamily="Bahnschrift Light"
+                    Text="Profile"/>
+                <StackPanel
+                    Orientation="Vertical"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="30,0"
+                    HorizontalAlignment="Left">
                     <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Your Name:</Label>
-                    <TextBox 
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1" 
-                />
+                        Foreground="Gray"
+                        FontWeight="DemiBold" Width="160"
+                        >Your Name:</Label>
+                    <TextBox
+                        Width="150"
+                        VerticalAlignment="Center"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        Text="{Binding Name}"
+                        />
                 </StackPanel>
-                <StackPanel 
-            Orientation="Vertical"
-            Grid.Column="1"
-            Grid.Row="1"
-            Margin="30,0"
-            HorizontalAlignment="Left">
+                <StackPanel
+                    Orientation="Vertical"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="30,0"
+                    HorizontalAlignment="Left">
                     <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Your Username:</Label>
-                    <TextBox 
-                IsReadOnly="True"
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1" 
-                />
+                        Foreground="Gray"
+                        FontWeight="DemiBold" Width="160"
+                        >Your Username:</Label>
+                    <TextBox
+                        IsReadOnly="True"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        
+                        Text="{Binding UserName}"
+                        />
                 </StackPanel>
-                <StackPanel 
-            Orientation="Vertical"
-            Grid.Column="0"
-            Grid.Row="2"
-            Margin="30,0"
-            HorizontalAlignment="Left">
+                <StackPanel
+                    Orientation="Vertical"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="30,0"
+                    HorizontalAlignment="Left">
                     <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Your Email:</Label>
-                    <TextBox 
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1" 
-                />
+                        Foreground="Gray"
+                        FontWeight="DemiBold" Width="160"
+                        >Your Email:</Label>
+                    <TextBox
+                        Width="150"
+                        VerticalAlignment="Center"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        Text="{Binding Email}"
+                        />
                 </StackPanel>
 
-                <StackPanel 
-            Orientation="Vertical"
-            Grid.Column="1"
-            Grid.Row="2"
-            Margin="30,0"
-            HorizontalAlignment="Left">
+                <StackPanel
+                    Orientation="Vertical"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Margin="30,0"
+                    HorizontalAlignment="Left">
                     <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Your Phone Number:</Label>
-                    <TextBox 
-                IsReadOnly="True"
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1" 
-                />
+                        Foreground="Gray"
+                        FontWeight="DemiBold" Width="160"
+                        >Your Phone Number:</Label>
+                    <TextBox
+                        IsReadOnly="True"
+                        Width="150"
+                        VerticalAlignment="Center"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        Text="{Binding Phone}"
+                        />
                 </StackPanel>
-                <StackPanel 
-            Orientation="Vertical"
-            Grid.Row="3"
-            Grid.Column="0"
-            Margin="30,0"
-            HorizontalAlignment="Left">
+                <StackPanel
+                    Orientation="Vertical"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Margin="30,0"
+                    HorizontalAlignment="Left">
                     <Label
-                Foreground="Gray"
-                FontWeight="DemiBold" Width="160"
-                >Your Password:</Label>
-                    <TextBox 
-                Width="150"
-                VerticalAlignment="Center"
-                BorderBrush="LightGray"
-                BorderThickness="1" 
-                />
+                        Foreground="Gray"
+                        FontWeight="DemiBold" Width="160"
+                        >Your Password:</Label>
+                    <TextBox
+                        Width="150"
+                        VerticalAlignment="Center"
+                        BorderBrush="LightGray"
+                        BorderThickness="1"
+                        Text="{Binding Password}"
+                        />
                 </StackPanel>
-                <StackPanel 
-            Orientation="Horizontal"
-            Grid.Row="3"
-            Grid.Column="1"
-            Margin="30,0"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Left">
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="30,0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
                     <Label
-                Foreground="Gray"
-                FontWeight="DemiBold"
-                >Authorized:</Label>
-                    <CheckBox Height="15" 
-                              IsEnabled="False"/>
+                        Foreground="Gray"
+                        FontWeight="DemiBold"
+                        >Authorized:</Label>
+                    <CheckBox 
+                        Height="15"
+                        IsEnabled="False"
+                        IsChecked="{Binding Authorized}"
+                        />
                 </StackPanel>
                 <Button
-            Grid.Row="4"
-            Grid.Column="0"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Grid.ColumnSpan="2"
-                Style="{StaticResource primaryBtn}"
-            Content="Update"    
-            />
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Grid.ColumnSpan="2"
+                    Style="{StaticResource primaryBtn}"
+                    Content="Update"
+                    Command="{Binding UpdateCommand}"
+                    />
             </Grid>
         </Border>
     </Grid>
-</Page>
+</UserControl>

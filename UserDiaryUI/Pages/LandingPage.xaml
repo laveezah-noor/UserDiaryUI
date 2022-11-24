@@ -1,22 +1,22 @@
-﻿<Page x:Class="UserDiaryUI.Pages.LandingPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:UserDiaryUI.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="LandingPage"
-      Background="White"
-      Name="MainPage">
+﻿<UserControl x:Class="UserDiaryUI.Pages.LandingPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:components="clr-namespace:UserDiaryUI.Components" 
+             xmlns:viewmodels="clr-namespace:UserDiaryUI.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:LandingViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White"
+             Name="MainPage">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <!--Navbar-->
-        <Grid Grid.Column="0"
-              Background="#3AA9AD">
+        <!--<components:NavigationBar Grid.Column="0" DataContext="{Binding NavigationBar}" />-->
+        <Grid Background="#3AA9AD">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.1*"/>
                 <RowDefinition/>
@@ -32,63 +32,102 @@
                 Margin="0,10"
                 Grid.Row="1"
                 >
-                <Image
-                    Margin="5"
-                    MouseDown="Navigate_to_Page"
+                <Button
+                     Click="Navigate_to_Page"
                     Tag="HomePage"
+                Style="{StaticResource textBtn}">
+                    <Image
+                    Margin="5"
                     Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\home-icon.png"/>
-                <Image
-                    Margin="5"
-                    MouseDown="Navigate_to_Page"
+
+                </Button>
+                <Button
+                     Click="Navigate_to_Page"
                     Tag="DiaryPage"
+                Style="{StaticResource textBtn}">
+                    <Image
+                    Margin="5"
+                    
                     Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\list-view-icon-70.png"/>
-                <Image
-                    Margin="5"
-                    MouseDown="Navigate_to_Page"
+                </Button>
+
+                <Button
+                     Click="Navigate_to_Page"
                     Tag="UsersPage"
+                Style="{StaticResource textBtn}">
+                    <Image
+                    Margin="5"
+                    
                     Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\people-icon.png"/>
-                <Image
-                    Margin="5"
-                    MouseDown="Navigate_to_Page"
+
+                </Button>
+
+                <Button
+                     Click="Navigate_to_Page"
                     Tag="UsersDiaryPage"
+                Style="{StaticResource textBtn}">
+
+                    <Image
+                    Margin="5"
+                    
                     Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\books-icon.png"/>
+                </Button>
+                <Button
+                     Click="Navigate_to_Page"
+                    Tag="AdminsPage"
+                Style="{StaticResource textBtn}">
+
+                    <Image
+                    Margin="5"
+                    
+                    Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\admin-icon.png"/>
+                </Button>
+
+            </StackPanel>
+                <!--Command="{Binding NavigateProfileCommand}"-->
+            <Button
+                Click="Navigate_to_Page"
+                    Tag="ProfilePage"
+                Grid.Row="2"
+            Style="{StaticResource textBtn}">
                 <Image
                     Margin="5"
-                    MouseDown="Navigate_to_Page"
-                    Tag="AdminsPage"
-                    Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\admin-icon.png"/>
-            </StackPanel>
-            <Image
-                Grid.Row="2"
-                    Margin="5"
-                    MouseDown="Navigate_to_Page"
-                    Tag="ProfilePage"
+                    
                     Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\profile-icon.png"/>
 
-            <Image
-                MouseDown="LogoutPopUp"
+            </Button>
+
+            <!--MouseDown="LogoutPopUp"-->
+            <Button
+                Command="{Binding}"
+            Style="{StaticResource textBtn}"
                 Grid.Row="3"
+            >
+                <Image
                     Margin="5"
                     Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\logout-icon.png"/>
+
+            </Button>
         </Grid>
 
         <!--Content-->
-        <Frame x:Name="SubWindow" Grid.Column="1" Source="HomePage.xaml"/>
+        <!--<ContentControl Grid.Column="1" DataContext="{Binding Content}" />-->
+        <Frame x:Name="SubWindow" Grid.Column="1" Source="UsersPage.xaml" NavigationUIVisibility="Hidden"/>
 
-        <Popup 
-            Name="logoutPopUp" 
-            StaysOpen="True" 
-            Placement="Center" 
+        <Popup
+            Name="logoutPopUp"
+            StaysOpen="True"
+            Placement="Center"
             >
             <Border
                 BorderBrush="{StaticResource primaryColor}"
                 BorderThickness="1"
                 >
                 <!--<Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="AliceBlue" Offset="1"></GradientStop>
-                        <GradientStop Color="LightBlue" Offset="0"></GradientStop>
-                    </LinearGradientBrush>
+                <LinearGradientBrush>
+                <GradientStop Color="AliceBlue" Offset="1"></GradientStop>
+                <GradientStop Color="LightBlue" Offset="0"></GradientStop>
+                </LinearGradientBrush>
                 </Border.Background>-->
                 <StackPanel
                     Width="400"
@@ -111,21 +150,21 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             Style="{StaticResource primaryBtn}"
-                            Content="Logout"    
-                            Click="Logout_Click"
-                        />
+                            Content="Logout"
+                            Command="{Binding LogoutCommand}"
+                            />
                         <Button
                             Margin="5,0"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             Grid.ColumnSpan="2"
                             Style="{StaticResource secondaryBtn}"
-                            Content="Cancel"    
+                            Content="Cancel"
                             Click="Cancel_Click"
-                        />
+                            />
                     </StackPanel>
                 </StackPanel>
             </Border>
         </Popup>
     </Grid>
-</Page>
+</UserControl>

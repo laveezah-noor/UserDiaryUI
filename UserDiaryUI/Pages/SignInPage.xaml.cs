@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UserDiaryUI.Views
+namespace UserDiaryUI.Pages
 {
     /// <summary>
     /// Interaction logic for SignInPage.xaml
     /// </summary>
-    public partial class SignInPage : Page
+    public partial class SignInPage : UserControl
     {
         public SignInPage()
         {

@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UserDiaryUI.ViewModels;
-using UserDiaryUI.Views;
 
 namespace UserDiaryUI.Pages
 {

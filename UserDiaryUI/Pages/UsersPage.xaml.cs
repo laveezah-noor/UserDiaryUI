@@ -12,18 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using UserDiaryUI.Views;
+using UserDiaryUI.Pages;
+using UserDiaryUI.ViewModels;
 
 namespace UserDiaryUI.Pages
 {
     /// <summary>
     /// Interaction logic for DiaryPage.xaml
     /// </summary>
-    public partial class UsersPage : Page
+    public partial class UsersPage : UserControl
     {
         public UsersPage()
         {
             InitializeComponent();
+            UsersViewModel viewModel = new UsersViewModel(UserDiary.Cache.getCache());
+            listUsers.ItemsSource = viewModel.Users;
+            this.DataContext = viewModel;
         }
         private void CreateNew_Popup(object sender, RoutedEventArgs e)
         {

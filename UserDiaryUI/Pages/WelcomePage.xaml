@@ -45,11 +45,7 @@
                 IsDefault="True"
                 Margin="25,30,5,5"
                 Style="{StaticResource primaryBtn}"
-                    >
-                <Hyperlink
-                    Foreground="White"
-                    TextDecorations="None"
-                    NavigateUri="LoginPage.xaml">Sign In Now!</Hyperlink></Button>
+                    >Sign In Now!</Button>
 
         </StackPanel>
         <Image

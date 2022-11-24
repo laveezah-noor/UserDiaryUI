@@ -1,12 +1,12 @@
-﻿<Page x:Class="UserDiaryUI.Pages.LoginPage"
+﻿<UserControl x:Class="UserDiaryUI.Pages.LoginPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:UserDiaryUI.ViewModels"
-      mc:Ignorable="d" 
+      xmlns:local="clr-namespace:UserDiaryUI.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=local:LoginViewModel}"
+             mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="800"
-      Title="LoginPage"
       Background="White">
 
     <Grid>
@@ -88,13 +88,12 @@
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                             Orientation="Horizontal">
-                                    <Label Target="{Binding ElementName=username}">_User Name:</Label>
+                                    <Label>_User Name:</Label>
                                     <TextBox 
-                                        Name="username" 
                                         Width="150"
                                         VerticalAlignment="Center"
                                         BorderThickness="0" 
-                                        Text="{Binding Username}"
+                                        Text="{Binding UserName}"
                                         />
                                 </StackPanel>
                             </Border>
@@ -125,18 +124,19 @@
                                     </TextBox>
                                 </StackPanel>
                             </Border>
-                            <TextBlock
+                            <StackPanel Orientation="Horizontal"
+                                        VerticalAlignment="Center"
+                                        >
+                                <TextBlock
                                 Margin="5"
                                 Foreground="White"
-                                >Not a member yet? 
-                                <Hyperlink
-                                    NavigateUri="SignInPage.xaml"
-                                    TextDecorations="None"
-                                    Foreground="#FFCAE4FF" FontWeight="Bold"
+                                Text="Not a user yet?"/>
+                                <Button
+                                    Style="{StaticResource textBtn}"
+                                    Command="{Binding ViewSigninCommand}"
                                     >
-                                    Sign Up.
-                                </Hyperlink>
-                            </TextBlock>
+                                    Sign Up.</Button>
+                            </StackPanel>
                             <Button
                                 Command="{Binding LoginCommand}"
                                 IsDefault="True"
@@ -156,4 +156,4 @@
         </Border>
 
     </Grid>
-</Page>
+</UserControl>

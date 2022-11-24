@@ -12,42 +12,41 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using UserDiaryUI.Pages;
 
-namespace UserDiaryUI.Views
+namespace UserDiaryUI.Pages
 {
     /// <summary>
     /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class HomePage : UserControl
     {
         public HomePage()
         {
             InitializeComponent();
-            //DataContext = this;
         }
- 
         private void CreateNew_Popup(object sender, RoutedEventArgs e)
         {
-            CreateDiary createDiary = new CreateDiary();
-            createDiary.Show();
-            //DisableMainPage();
+            DisableMainPage();
         }
         private void DisableMainPage()
         {
-            homePage.IsEnabled = false;
+            this.IsEnabled = false;
             this.Background = Brushes.LightGray;
             CreateNewPopUp.IsOpen = true;
-            
         }
-
-        public void Cancel_Click(object sender, RoutedEventArgs e) => EnableMainPage();
-
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            // Copy name from the Popup into the main page. lblName.Content = "You entered: " + txtName.Text; EnableMainPage();
+        }
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            EnableMainPage();
+        }
         private void EnableMainPage()
         {
-            homePage.IsEnabled = true;
-            homePage.Background = null;
-            homePage.CreateNewPopUp.IsOpen = false;
+            this.IsEnabled = true;
+            this.Background = null;
+            CreateNewPopUp.IsOpen = false;
         }
     }
 }

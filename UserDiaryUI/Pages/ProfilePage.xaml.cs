@@ -12,17 +12,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UserDiaryUI.ViewModels;
 
 namespace UserDiaryUI.Pages
 {
     /// <summary>
     /// Interaction logic for ProfilePage.xaml
     /// </summary>
-    public partial class ProfilePage : Page
+    public partial class ProfilePage : UserControl
     {
         public ProfilePage()
         {
             InitializeComponent();
+            UserProfileViewModel viewModel = new UserProfileViewModel(UserDiary.Cache.getCache());
+            this.DataContext = viewModel;
         }
     }
 }
