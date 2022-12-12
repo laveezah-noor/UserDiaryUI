@@ -36,10 +36,10 @@ namespace UserDiaryUI.ViewModels
         public ICommand LoginCommand { get; }
         public ICommand ViewSigninCommand { get; }
 
-        public LoginViewModel(INavigationService<SigninViewModel> signinNavigationService, INavigationService<UsersViewModel> landingNavigationService)
+        public LoginViewModel(INavigationService signinNavigationService, INavigationService landingNavigationService)
         {
             LoginCommand = new LoginCommand(landingNavigationService, this);
-            ViewSigninCommand = new NavigateCommand<SigninViewModel>(signinNavigationService);
+            ViewSigninCommand = new NavigateCommand(signinNavigationService);
         }
     }
 

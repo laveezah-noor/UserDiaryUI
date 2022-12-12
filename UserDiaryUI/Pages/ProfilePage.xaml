@@ -112,7 +112,6 @@
                         FontWeight="DemiBold" Width="160"
                         >Your Phone Number:</Label>
                     <TextBox
-                        IsReadOnly="True"
                         Width="150"
                         VerticalAlignment="Center"
                         BorderBrush="LightGray"

@@ -24,8 +24,8 @@ namespace UserDiaryUI.Pages
         public ProfilePage()
         {
             InitializeComponent();
-            UserProfileViewModel viewModel = new UserProfileViewModel(UserDiary.Cache.getCache());
-            this.DataContext = viewModel;
+            //UserProfileViewModel viewModel = new UserProfileViewModel(UserDiary.Cache.getCache());
+            //this.DataContext = viewModel;
         }
     }
 }

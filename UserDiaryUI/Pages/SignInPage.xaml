@@ -91,7 +91,15 @@
                                              VerticalAlignment="Center"
                                              BorderThickness="0"
                                              Text="{Binding Name}"
-                                             />
+                                             >
+                                        <TextBox.ToolTip>
+                                            <ToolTip Background="#60AA4030" Foreground="White" HasDropShadow="False" >
+                                                <StackPanel>
+                                                    <TextBlock Margin="3" >Name is a required field</TextBlock>
+                                                </StackPanel>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
                                 </StackPanel>
                             </Border>
 
@@ -104,7 +112,15 @@
                                              VerticalAlignment="Center"
                                              BorderThickness="0"
                                              Text="{Binding UserName}"
-                                             />
+                                            >
+                                        <TextBox.ToolTip>
+                                            <ToolTip Background="#60AA4030" Foreground="White" HasDropShadow="False" >
+                                                <StackPanel>
+                                                    <TextBlock Margin="3" >Username is a required field</TextBlock>
+                                                </StackPanel>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
                                 </StackPanel>
                             </Border>
                             <Border
@@ -115,7 +131,15 @@
                                     <TextBox Width="150"
                                              VerticalAlignment="Center"
                                              BorderThickness="0"
-                                             Text="{Binding Password}"/>
+                                             Text="{Binding Password}">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Background="#60AA4030" Foreground="White" HasDropShadow="False" >
+                                                <StackPanel>
+                                                    <TextBlock Margin="3" >Password is a required field</TextBlock>
+                                                </StackPanel>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
                                 </StackPanel>
                             </Border>
 

@@ -23,6 +23,17 @@ namespace UserDiaryUI.Components
         public UserModal()
         {
             InitializeComponent();
+            //if (Type.Text == "")
+            //{
+            //    Type.IsReadOnly = true;
+            //} else
+            //{
+            //    var item1 = new ComboBoxItem();
+            //    item1.Content = "Admin";
+            //    var item2 = new ComboBoxItem();
+            //    item2.Content = "User";
+            //}
+            
         }
     }
 }

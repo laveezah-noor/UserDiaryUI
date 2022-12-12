@@ -12,10 +12,6 @@ namespace UserDiaryUI.Pages
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
+        
     }
 }

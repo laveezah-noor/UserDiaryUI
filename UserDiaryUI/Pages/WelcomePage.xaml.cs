@@ -20,7 +20,7 @@ namespace UserDiaryUI.Pages
     /// <summary>
     /// Interaction logic for WelcomePage.xaml
     /// </summary>
-    public partial class WelcomePage : Page
+    public partial class WelcomePage : UserControl
     {
         public WelcomePage()
         {
@@ -28,10 +28,10 @@ namespace UserDiaryUI.Pages
             //WelcomeImg.Source = new BitmapImage(new Uri("/Images/Character-Thinking.jpg", UriKind.Relative));
         }
 
-        private void Navigate_To_Signin(object sender, RoutedEventArgs e)
-        {
+        //private void Navigate_To_Signin(object sender, RoutedEventArgs e)
+        //{
 
-            this.NavigationService.Navigate(new Uri("LoginPage.xaml", UriKind.Relative));
-        }
+        //    this.NavigationService.Navigate(new Uri("LoginPage.xaml", UriKind.Relative));
+        //}
     }
 }

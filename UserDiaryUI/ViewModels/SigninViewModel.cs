@@ -72,11 +72,11 @@ namespace UserDiaryUI.ViewModels
         public ICommand ViewLoginCommand { get; }
         public MessageViewModel ErrorMessageViewModel { get; }
 
-        public SigninViewModel(INavigationService<LoginViewModel> navigationService)
+        public SigninViewModel(INavigationService navigationService)
         {
             ErrorMessageViewModel = new MessageViewModel();
             SigninCommand = new SigninCommand(navigationService, this);
-            ViewLoginCommand = new NavigateCommand<LoginViewModel>(navigationService);
+            ViewLoginCommand = new NavigateCommand(navigationService);
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿<UserControl x:Class="UserDiaryUI.Pages.UsersPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:UserDiaryUI.Pages" xmlns:viewmodels="clr-namespace:UserDiaryUI.ViewModels" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:UserDiaryUI.Pages" xmlns:viewmodels="clr-namespace:UserDiaryUI.ViewModels"
              d:DataContext="{d:DesignInstance Type=viewmodels:UsersViewModel}"
-             mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="750"
-      Name="usersPage">
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="750"
+             Name="usersPage">
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -20,15 +20,15 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontSize="25"
-            Text="Users" 
+            Text="{Binding _userType}"
             FontFamily="Bahnschrift Light"/>
         <Button
-                Click="CreateNew_Popup"
-                BorderBrush="Transparent"
-                Background="Transparent"
-                Width="110"
-                VerticalAlignment="Center" Margin="600,0,0,0"
-                >
+            Command="{Binding CreateUser}"
+            BorderBrush="Transparent"
+            Background="Transparent"
+            Width="110"
+            VerticalAlignment="Center" Margin="600,0,0,0"
+            >
             <Border
                 Padding="5"
                 CornerRadius="5"
@@ -39,13 +39,13 @@
                     <Image
                         Width="12"
                         Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\plus-icon.png"
-                    />
+                        />
                     <TextBlock
                         Margin="5,0"
                         FontSize="15"
                         Foreground="{StaticResource lightColor}"
                         Text="Create New"
-                    />
+                        />
 
                 </StackPanel>
             </Border>
@@ -59,7 +59,7 @@
             Width="230"
             Height="20"
             BorderThickness="1"
-        >
+            >
             <StackPanel
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
@@ -69,16 +69,16 @@
                     Width="12"
                     Source="/Images/search-icon.png"/>
                 <TextBox Width="200"
-                VerticalAlignment="Center"
-                Text="Search Here "
-                BorderThickness="0"/>
+                         VerticalAlignment="Center"
+                         Text="Search Here "
+                         BorderThickness="0"/>
             </StackPanel>
         </Border>
         <ListView
             d:DataContext="{d:DesignInstance Type=viewmodels:UsersViewModel}"
             Grid.Row="2"
-                Margin="5,10,5,0" 
-                Name="listUsers" 
+            Margin="5,10,5,0"
+            ItemsSource="{Binding Users}"
             d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -88,50 +88,52 @@
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn 
-                                Width="50"
-                                Header="S.No"
-                                DisplayMemberBinding="{Binding Id}" />
-                        <GridViewColumn 
-                                Width="120"
-                                Header="Name"
-                                DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn 
-                                Width="120"
-                                Header="Username" 
+                        <GridViewColumn
+                            Width="50"
+                            Header="S.No"
+                            DisplayMemberBinding="{Binding Id}" />
+                        <GridViewColumn
+                            Width="120"
+                            Header="Name"
+                            DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn
+                            Width="120"
+                            Header="Username"
                             DisplayMemberBinding="{Binding UserName}"/>
-                        <GridViewColumn 
-                                Width="120"
-                                Header="Email" 
-                                DisplayMemberBinding= "{Binding Email, StringFormat={}{0:C}}" />
-                        <GridViewColumn 
-                                Width="120"
-                                Header="Phone" 
-                                DisplayMemberBinding= "{Binding Phone, StringFormat={}{0:C}}" />
-                        <GridViewColumn 
-                                Width="100"
-                                Header="Status" 
-                                DisplayMemberBinding= "{Binding Status, StringFormat={}{0:C}}" />
-                        <GridViewColumn 
+                        <GridViewColumn
+                            Width="120"
+                            Header="Email"
+                            DisplayMemberBinding= "{Binding Email, StringFormat={}{0:C}}" />
+                        <GridViewColumn
+                            Width="120"
+                            Header="Phone"
+                            DisplayMemberBinding= "{Binding Phone, StringFormat={}{0:C}}" />
+                        <GridViewColumn
+                            Width="100"
+                            Header="Status"
+                            DisplayMemberBinding= "{Binding Status, StringFormat={}{0:C}}" />
+                        <GridViewColumn
                             Header="Options"
                             Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel
                                         Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button 
-                                        Width="40"
-                                        FontSize="12"
-                                        Style="{StaticResource primaryBtn}"
-                                        Content="Edit" 
-                                        Margin="2"
-                                        Click="CreateNew_Popup"
-                                        />
-                                        <Button 
-                                        Width="40"
-                                        FontSize="12"
-                                        Style="{StaticResource secondaryBtn}"
-                                        Margin="2" 
+                                        <Button
+                                            Width="40"
+                                            FontSize="12"
+                                            Style="{StaticResource primaryBtn}"
+                                            Content="Edit"
+                                            Margin="2"
+                                            Command="{Binding EditUser}"
+                                            CommandParameter="{Binding Id}"
+                                            />
+                                        <Button
+                                            Width="40"
+                                            FontSize="12"
+                                            Style="{StaticResource secondaryBtn}"
+                                            Command="{Binding DeleteUser}"
+                                            Margin="2"
                                             Content="Delete" />
                                     </StackPanel>
                                 </DataTemplate>
@@ -145,12 +147,12 @@
         </ListView>
 
         <Popup
-            Name="CreateNewPopUp" 
-            StaysOpen="True" 
-            Placement="Center" 
-            
+            x:Name="CreateNewPopUp"
+            StaysOpen="True"
+            Placement="Center"
+
             >
-            <ContentControl DataContext="{Binding _modalUserViewModel}"/>
+            <ContentControl DataContext="{Binding ModalUserViewModel}"/>
         </Popup>
     </Grid>
 </UserControl>

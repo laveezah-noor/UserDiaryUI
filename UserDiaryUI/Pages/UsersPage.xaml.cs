@@ -25,9 +25,9 @@ namespace UserDiaryUI.Pages
         public UsersPage()
         {
             InitializeComponent();
-            UsersViewModel viewModel = new UsersViewModel(UserDiary.Cache.getCache());
-            listUsers.ItemsSource = viewModel.Users;
-            this.DataContext = viewModel;
+            //UsersViewModel viewModel = new UsersViewModel(UserDiary.Cache.getCache(), );
+            //listUsers.ItemsSource = viewModel.Users;
+            //this.DataContext = viewModel;
         }
         private void CreateNew_Popup(object sender, RoutedEventArgs e)
         {

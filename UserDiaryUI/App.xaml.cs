@@ -5,6 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
+using UserDiary;
+using UserDiaryUI.Scripts;
 using UserDiaryUI.Service;
 using UserDiaryUI.Stores;
 using UserDiaryUI.ViewModels;
@@ -16,79 +19,121 @@ namespace UserDiaryUI
     /// </summary>
     public partial class App : Application
     {
-        private readonly UserDiary.Cache _cache;
+        CacheStore _cache;
         private readonly NavigationStore _navigationStore;
-        private readonly INavigationService<LandingViewModel> _landingPageNavigationService;
-        private readonly INavigationService<SigninViewModel> _signinPageNavigationService;
-        private readonly INavigationService<LoginViewModel> _loginPageNavigationService;
-        private NavigationBarViewModel navigationBarViewModel;
+        private readonly ModalNavigationStore _modalNavigationStore;
+
         public App()
         {
+            //Stores
+
+            _cache = new CacheStore();
             _navigationStore = new NavigationStore();
-            _signinPageNavigationService = CreateSigninViewModel();
-            //_landingPageNavigationService = CreateHomeViewModel();
-            _loginPageNavigationService = CreateLoginViewModel();
-            _cache = UserDiary.Cache.getCache();
-            navigationBarViewModel = new NavigationBarViewModel(CreateHomeViewModel(),
-                CreateHomeViewModel(),
-                CreateProfileViewModel(),CreateUserViewModel());
+            _modalNavigationStore = new ModalNavigationStore();
+            
         }
         protected override void OnStartup(StartupEventArgs e)
         {
-            if (_cache.currentUser is not null)
+            //Server Connection
+
+            if (_cache.Cache.currentUser is not null)
             {
-                //_landingPageNavigationService.Navigate();
-                    //new LandingViewModel(_navigationStore, CreateLoginViewModel);
             }
-            _signinPageNavigationService.Navigate();
+            CreateWelcomeViewModel().Navigate();
 
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_navigationStore)
+                DataContext = new MainViewModel(_navigationStore, _modalNavigationStore)
             };
             MainWindow.Show();
             base.OnStartup(e);
         }
 
-        //private SigninViewModel CreateSigninViewModel()
-        //{
-        //    return new SigninViewModel(_loginPageNavigationService);
-        //}
-
-        //private LoginViewModel CreateLoginViewModel()
-        //{
-        //    return new LoginViewModel(_signinPageNavigationService, _landingPageNavigationService);
-        //}
-
-        private INavigationService<LoginViewModel> CreateLoginViewModel()
+        private INavigationService CreateLoginViewModel()
         {
-            //return new NavigationService<LoginViewModel>(_navigationStore, () => new LoginViewModel(CreateSigninViewModel(), CreateHomeViewModel()));
-
-            return new NavigationService<LoginViewModel>(_navigationStore, () => new LoginViewModel(CreateSigninViewModel(), CreateUserViewModel()));
+            return new NavigationService<LoginViewModel>(
+                _navigationStore, 
+                () => new LoginViewModel(CreateSigninViewModel(), CreateHomeViewModel()));
         }
         
-        private INavigationService<SigninViewModel> CreateSigninViewModel()
+        private INavigationService CreateSigninViewModel()
         {
-            return new NavigationService<SigninViewModel>(_navigationStore, () => new SigninViewModel(CreateLoginViewModel()));
+            return new NavigationService<SigninViewModel>(
+                _navigationStore,
+                () => new SigninViewModel(CreateLoginViewModel()));
         }
 
-        //private LandingViewModel CreateLandingViewModel()
-        //{
-        //    return new LandingViewModel(_loginPageNavigationService, navigationBarViewModel);
-        //}
+        private INavigationService CreateWelcomeViewModel()
+        {
+            return new NavigationService<WelcomeViewModel>(
+                _navigationStore, 
+                () => new WelcomeViewModel(CreateSigninViewModel()));
+        }
 
-        private INavigationService<DiaryListingViewModel> CreateHomeViewModel()
+        private INavigationService CreateHomeViewModel()
         {
-            return new AppNavigationService<DiaryListingViewModel>(_navigationStore, CreateLoginViewModel(), () => new DiaryListingViewModel(_cache), navigationBarViewModel);
+            return new AppNavigationService<DiaryListingViewModel>(
+                _navigationStore, 
+                () => new HomeViewModel(_cache, CreateHomeViewModel(), _modalNavigationStore), 
+                CreateNavigationBarViewModel);
         }
-        
-        private INavigationService<UserProfileViewModel> CreateProfileViewModel()
+
+        private INavigationService CreateDiaryViewModel()
         {
-            return new AppNavigationService<UserProfileViewModel>(_navigationStore, CreateLoginViewModel(), () => new UserProfileViewModel(_cache), navigationBarViewModel);
+            return new AppNavigationService<DiaryListingViewModel>(
+                _navigationStore, 
+                () => new DiaryListingViewModel(_cache, CreateDiaryViewModel(), _modalNavigationStore), 
+                CreateNavigationBarViewModel);
         }
-        private INavigationService<UsersViewModel> CreateUserViewModel()
+
+        private INavigationService CreateProfileViewModel()
         {
-            return new AppNavigationService<UsersViewModel>(_navigationStore, CreateLoginViewModel(), () => new UsersViewModel(_cache), navigationBarViewModel);
+            return new AppNavigationService<UserProfileViewModel>(
+                _navigationStore, 
+                () => new UserProfileViewModel(_cache.Cache, CreateProfileViewModel()), 
+                CreateNavigationBarViewModel);
         }
+
+        private INavigationService CreateUserViewModel()
+        {
+            return new AppNavigationService<UsersViewModel>(
+                _navigationStore, 
+                () => new UsersViewModel(_cache.Cache, CreateUserViewModel(), _modalNavigationStore,"Users"), 
+                CreateNavigationBarViewModel);
+
+        }
+
+        private INavigationService CreateAdminViewModel()
+        {
+            return new AppNavigationService<UsersViewModel>(
+                _navigationStore,
+                () => new UsersViewModel(_cache.Cache, CreateAdminViewModel(), _modalNavigationStore, "Admins"),
+                CreateNavigationBarViewModel);
+
+        }
+
+        private INavigationService CreateUserDiariesViewModel()
+        {
+            return new AppNavigationService<UserDiariesViewModel>(
+                _navigationStore,
+                () => new UserDiariesViewModel(_cache.Cache),
+                CreateNavigationBarViewModel);
+
+        }
+
+        private NavigationBarViewModel CreateNavigationBarViewModel()
+        {
+            return new NavigationBarViewModel(
+                CreateHomeViewModel(),
+                CreateDiaryViewModel(),
+                CreateProfileViewModel(),
+                CreateUserViewModel(),
+                CreateAdminViewModel(),
+                CreateUserDiariesViewModel(),
+                CreateLoginViewModel(),
+                _modalNavigationStore);
+        }
+
+
     }
 }

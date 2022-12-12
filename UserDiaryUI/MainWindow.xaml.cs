@@ -25,5 +25,15 @@ namespace UserDiaryUI
             InitializeComponent();
             
         }
+
+        private void Open(object sender, RoutedEventArgs e)
+        {
+            modal.IsOpen = true;
+        }
+
+        private void Close(object sender, RoutedEventArgs e)
+        {
+            modal.IsOpen = false;
+        }
     }
 }

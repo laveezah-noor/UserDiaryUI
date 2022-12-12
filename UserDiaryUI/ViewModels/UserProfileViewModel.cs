@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using UserDiary;
 using UserDiaryUI.Commands;
+using UserDiaryUI.Service;
 
 namespace UserDiaryUI.ViewModels
 {
@@ -92,7 +93,7 @@ namespace UserDiaryUI.ViewModels
         }
         public ICommand UpdateCommand { get; }
 
-        public UserProfileViewModel(Cache cache)
+        public UserProfileViewModel(Cache cache, INavigationService navigationService)
         {
             User user = cache.currentUser;
             Type = user.Type;
@@ -102,7 +103,7 @@ namespace UserDiaryUI.ViewModels
             Phone = user.phone;
             Email = user.email;
             Authorized = user.Status == "pending" ? false : true;
-            UpdateCommand = new UpdateProfileCommand(this, cache);
+            UpdateCommand = new UpdateProfileCommand(this, cache, navigationService);
         }
     }
 }

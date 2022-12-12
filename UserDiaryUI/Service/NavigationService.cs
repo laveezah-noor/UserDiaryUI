@@ -9,7 +9,7 @@ using UserDiaryUI.ViewModels;
 namespace UserDiaryUI.Service
 {
     public class NavigationService<ViewModelType> : 
-        INavigationService<ViewModelType>
+        INavigationService
         where ViewModelType : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;

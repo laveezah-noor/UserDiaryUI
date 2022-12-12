@@ -2,8 +2,7 @@
 
 namespace UserDiaryUI.Service
 {
-    public interface INavigationService<ViewModelType>
-        where ViewModelType : ViewModelBase
+    public interface INavigationService
     {
         void Navigate();
     }

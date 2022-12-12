@@ -18,35 +18,11 @@ namespace UserDiaryUI.Pages
     /// <summary>
     /// Interaction logic for DiaryPage.xaml
     /// </summary>
-    public partial class DiaryPage : Page
+    public partial class DiaryPage : UserControl
     {
         public DiaryPage()
         {
             InitializeComponent();
-        }
-        private void CreateNew_Popup(object sender, RoutedEventArgs e)
-        {
-            DisableMainPage();
-        }
-        private void DisableMainPage()
-        {
-            this.IsEnabled = false;
-            this.Background = Brushes.LightGray;
-            CreateNewPopUp.IsOpen = true;
-        }
-        private void Logout_Click(object sender, RoutedEventArgs e)
-        {
-            // Copy name from the Popup into the main page. lblName.Content = "You entered: " + txtName.Text; EnableMainPage();
-        }
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            EnableMainPage();
-        }
-        private void EnableMainPage()
-        {
-            this.IsEnabled = true;
-            this.Background = null;
-            CreateNewPopUp.IsOpen = false;
         }
     }
 }

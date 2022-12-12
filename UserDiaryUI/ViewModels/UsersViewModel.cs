@@ -4,19 +4,35 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Xml.Serialization;
 using UserDiary;
 using UserDiaryUI.Commands;
 using UserDiaryUI.Components;
+using UserDiaryUI.Service;
+using UserDiaryUI.Stores;
 
 namespace UserDiaryUI.ViewModels
 {
     public class UsersViewModel : ViewModelBase
     {
+        
         private UserListViewModel _userListViewModel;
         public ModalUserViewModel _modalUserViewModel;
-        public ObservableCollection<UserViewModel> Users;
+        public ObservableCollection<UserViewModel> _users;
+
+        public ObservableCollection<UserViewModel> Users
+        {
+            get { return _users; }
+            set
+            {
+                _users = value;
+                OnPropertyChanged(nameof(Users));
+            }
+        }
+
         public ModalUserViewModel ModalUserViewModel
         {
             get { return _modalUserViewModel; }
@@ -27,22 +43,24 @@ namespace UserDiaryUI.ViewModels
             }
         }
 
-        public void setModalUserViewModel(ModalUserViewModel modal)
+        public bool setModalUserViewModel(ModalUserViewModel modal)
         {
             ModalUserViewModel = modal;
+            return true;
         }
 
         public ICommand CreateUser { get; }
-        public ICommand EditUser { get; }
+        public string _userType { get; }
 
-        public UsersViewModel(UserDiary.Cache cache)
+
+        public UsersViewModel(UserDiary.Cache cache, INavigationService navigationService, ModalNavigationStore modalNavigationStore, string userType)
         {
             if (cache.UserList.UsersList.Count !=0)
             {
-                _userListViewModel = new UserListViewModel(cache.UserList);
+                _userType = userType;
+                _userListViewModel = new UserListViewModel(cache.UserList, modalNavigationStore, navigationService, _userType);
                 Users = _userListViewModel._userlist;
-
-                //CreateUser = new CreateUserModalCommand(setModalUserViewModel);
+                CreateUser = new CreateUserModalCommand(navigationService, modalNavigationStore, null);
             }
 
             //diaries = new ObservableCollection<DiaryViewModel>();
@@ -52,19 +70,6 @@ namespace UserDiaryUI.ViewModels
         }
     }
 
-    public class CreateUserModalCommand : CommandBase
-    {
-        public delegate void setModal(ModalUserViewModel modal);
-
-        public CreateUserModalCommand(setModal setModalUserViewModel)
-        {
-            //setModal = setModalUserViewModel;
-        }
-
-        public override void Execute(object? parameter)
-        {
-            //setModal.Invoke(new ModalUserViewModel(new User(), true));
-        }
-    }
+    
 
 }

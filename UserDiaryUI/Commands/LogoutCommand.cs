@@ -10,11 +10,13 @@ namespace UserDiaryUI.Commands
 {
     internal class LogoutCommand : ICommand
     {
-        private readonly INavigationService<LoginViewModel> _navigationService;
+            private readonly INavigationService _navigationService;
+        private readonly ModalNavigationStore _modalNavigationStore;
 
-        public LogoutCommand(INavigationService<LoginViewModel> navigationService)
+        public LogoutCommand(INavigationService navigationService, ModalNavigationStore modalNavigationStore)
         {
             _navigationService = navigationService;
+            _modalNavigationStore = modalNavigationStore;
         }
 
         public event EventHandler? CanExecuteChanged;
@@ -27,7 +29,7 @@ namespace UserDiaryUI.Commands
         public void Execute(object? parameter)
         {
             Cache.getCache().Logout();
-            MessageBox.Show($"{Cache.getCache().currentUser is null}");
+            _modalNavigationStore.Close();
             _navigationService.Navigate();
         }
     }

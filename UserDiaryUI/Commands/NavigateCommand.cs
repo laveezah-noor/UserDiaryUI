@@ -11,12 +11,11 @@ using UserDiaryUI.ViewModels;
 
 namespace UserDiaryUI.Commands
 {
-    public class NavigateCommand<ViewModelType> : CommandBase
-        where ViewModelType : ViewModelBase
+    public class NavigateCommand : CommandBase
     {
-        private readonly INavigationService<ViewModelType> _navigationService;
+        private readonly INavigationService _navigationService;
         
-        public NavigateCommand(INavigationService<ViewModelType> navigationService)
+        public NavigateCommand(INavigationService navigationService)
         {
             _navigationService = navigationService;
         }

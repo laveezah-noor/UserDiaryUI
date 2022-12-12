@@ -36,30 +36,30 @@ namespace UserDiaryUI.Pages
 
         private void Navigate_to_Page(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).Tag.ToString() == Pages.HomePage.ToString())
-            {
-                SubWindow.Source = new Uri("./HomePage.xaml", UriKind.Relative);
-            }
-            else if (((Button)sender).Tag.ToString() == Pages.DiaryPage.ToString())
-            {
-                SubWindow.Source = new Uri("./DiaryPage.xaml", UriKind.Relative);
-            }
-            else if (((Button)sender).Tag.ToString() == Pages.UsersPage.ToString())
-            {
-                SubWindow.Source = new Uri("./UsersPage.xaml", UriKind.Relative);
-            }
-            else if (((Button)sender).Tag.ToString() == Pages.UsersDiaryPage.ToString())
-            {
-                SubWindow.Source = new Uri("./DiaryPage.xaml", UriKind.Relative);
-            }
-            else if (((Button)sender).Tag.ToString() == Pages.AdminsPage.ToString())
-            {
-                SubWindow.Source = new Uri("./UsersPage.xaml", UriKind.Relative);
-            }
-            else if (((Button)sender).Tag.ToString() == Pages.ProfilePage.ToString())
-            {
-                SubWindow.Source = new Uri("./ProfilePage.xaml", UriKind.Relative);
-            }
+            //if (((Button)sender).Tag.ToString() == Pages.HomePage.ToString())
+            //{
+            //    SubWindow.Source = new Uri("./HomePage.xaml", UriKind.Relative);
+            //}
+            //else if (((Button)sender).Tag.ToString() == Pages.DiaryPage.ToString())
+            //{
+            //    SubWindow.Source = new Uri("./DiaryPage.xaml", UriKind.Relative);
+            //}
+            //else if (((Button)sender).Tag.ToString() == Pages.UsersPage.ToString())
+            //{
+            //    SubWindow.Source = new Uri("./UsersPage.xaml", UriKind.Relative);
+            //}
+            //else if (((Button)sender).Tag.ToString() == Pages.UsersDiaryPage.ToString())
+            //{
+            //    SubWindow.Source = new Uri("./DiaryPage.xaml", UriKind.Relative);
+            //}
+            //else if (((Button)sender).Tag.ToString() == Pages.AdminsPage.ToString())
+            //{
+            //    SubWindow.Source = new Uri("./UsersPage.xaml", UriKind.Relative);
+            //}
+            //else if (((Button)sender).Tag.ToString() == Pages.ProfilePage.ToString())
+            //{
+            //    SubWindow.Source = new Uri("./ProfilePage.xaml", UriKind.Relative);
+            //}
         }
             private void LogoutPopUp(object sender, MouseButtonEventArgs e)
         {

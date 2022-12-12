@@ -36,7 +36,7 @@ namespace UserDiaryUI.ViewModels
         public ICommand CreateDiaryCommand { get; }
 
         public CreateDiaryViewModel() {
-            CreateDiaryCommand = new CreateDiaryCommand();
+            //CreateDiaryCommand = new CreateDiaryCommand();
         }
     }
 }

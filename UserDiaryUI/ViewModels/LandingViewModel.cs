@@ -8,6 +8,7 @@ using System.Windows.Input;
 using UserDiary;
 using UserDiaryUI.Commands;
 using UserDiaryUI.Service;
+using UserDiaryUI.Stores;
 
 namespace UserDiaryUI.ViewModels
 {
@@ -15,17 +16,23 @@ namespace UserDiaryUI.ViewModels
     {
         private readonly Cache _cache;
         public NavigationBarViewModel NavigationBar { get; }
-        public ViewModelBase Content { get; }
+        public ViewModelBase _contentViewModel { get; set; }
 
-        public ICommand LogoutCommand { get; }
-
-        public LandingViewModel(INavigationService<LoginViewModel> navigationService, NavigationBarViewModel navigationBar, ViewModelBase Content)
+        public ViewModelBase ContentViewModel
         {
-            _cache = Cache.getCache();
-            //MessageBox.Show($"{Content}");
-            LogoutCommand = new LogoutCommand(navigationService);
+            get { return _contentViewModel; }
+            set
+            {
+                _contentViewModel = value;
+                OnPropertyChanged(nameof(ContentViewModel));
+            }
+        }
+
+
+        public LandingViewModel(NavigationBarViewModel navigationBar, ViewModelBase content)
+        {
             NavigationBar = navigationBar;
-            Content = Content;
+            ContentViewModel = content;
         }
     }
 }

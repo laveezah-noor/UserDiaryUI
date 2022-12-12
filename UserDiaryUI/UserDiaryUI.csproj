@@ -8,8 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="UserDiary">
       <HintPath>..\..\UserDiary\UserDiary\bin\Debug\net6.0\UserDiary.dll</HintPath>
+    </Reference>
+    <Reference Include="utils">
+      <HintPath>..\..\UserDiaryServer\utils\bin\Debug\net6.0\utils.dll</HintPath>
     </Reference>
   </ItemGroup>
 

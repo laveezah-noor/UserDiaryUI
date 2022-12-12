@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:UserDiaryUI.Pages"
-        xmlns:viewmodels="clr-namespace:UserDiaryUI.ViewModels" 
-        xmlns:components="clr-namespace:UserDiaryUI.Components" 
+        xmlns:viewmodels="clr-namespace:UserDiaryUI.ViewModels"
+        xmlns:components="clr-namespace:UserDiaryUI.Components"
         mc:Ignorable="d"
         Icon="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\Diary Icon.png"
         Title="Diaries" Height="550" Width="800">
-    <ContentControl Content="{Binding CurrentViewModel}">
-        <ContentControl.Resources>
+    <Grid>
+        <Grid.Resources>
 
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                 <views:LoginPage/>
@@ -20,30 +20,52 @@
                 <views:LandingPage/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:DiaryListingViewModel}">
+            <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
                 <views:HomePage/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:DiaryListingViewModel}">
+                <views:DiaryPage/>
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewmodels:SigninViewModel}">
                 <views:SignInPage/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewmodels:NavigationBarViewModel}">
-                <components:NavigationBar/>
+            <DataTemplate DataType="{x:Type viewmodels:WelcomeViewModel}">
+                <views:WelcomePage/>
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewmodels:UserProfileViewModel}">
                 <views:ProfilePage/>
             </DataTemplate>
-        
+
             <DataTemplate DataType="{x:Type viewmodels:UsersViewModel}">
                 <views:UsersPage/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewmodels:UserDiariesViewModel}">
+                <views:UserDiariesPage/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ModalUserViewModel}">
+                <components:UserModal/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ModalDiaryViewModel}">
+                <views:CreateDiary/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodels:ModalWarningViewModel}">
+                <views:WarningPage/>
+            </DataTemplate>
+
+        </Grid.Resources>
+        <components:Modal x:Name="modal" Panel.ZIndex="1000" IsOpen="{Binding IsOpen}">
+            <ContentControl Content="{Binding CurrentModalViewModel}"/>
+        </components:Modal>
 
 
-        </ContentControl.Resources>
-        <!--<ContentControl Content="{Binding CurrentViewModel}"/>-->
-    </ContentControl>
-    <!--<Frame Source="Pages\WelcomePage.xaml" NavigationUIVisibility="Hidden"/>-->
+        <ContentControl Content="{Binding CurrentViewModel}" />
+    </Grid>
 </Window>

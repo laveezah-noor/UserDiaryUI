@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using System.Windows.Input;
 using UserDiary;
 using UserDiaryUI.Commands;
+using UserDiaryUI.Service;
+using UserDiaryUI.Stores;
 
 namespace UserDiaryUI.ViewModels
 {
     public class ModalUserViewModel : ViewModelBase
     {
+        public int _id;
         private string _type;
         private string _userName;
         private string _password;
@@ -79,18 +78,48 @@ namespace UserDiaryUI.ViewModels
                 OnPropertyChanged(nameof(Phone));
             }
         }
+        public bool _authorized;
+
+        public bool Authorized
+        {
+            get { return _authorized; }
+            set
+            {
+                _authorized = value;
+                OnPropertyChanged(nameof(Authorized));
+            }
+        }
+        public bool hasUser { get; set; }
 
         public ICommand CreateUserCommand { get; }
+        public ICommand EditUserCommand { get; }
+        public ICommand CloseModalCommand { get; }
+        public string Text { get; set; }
 
-        public ModalUserViewModel(User user, bool type)
+        public ModalUserViewModel(INavigationService navigationService, ModalNavigationStore navigationStore, User user)
         {
-            _type = user.Type.ToString();
-            _name = user.Name;
-            _userName = user.UserName;
-            _password = user.Password;
-            _phone = user.phone;
-            _email = user.email;
-            CreateUserCommand = new CreateUserCommand(this);
+            if (user is not null)
+            {
+                hasUser = true;
+                Text = "Edit User";
+                _id = user.Id;
+                Type = user?.Type.ToString();
+                Name = user?.Name;
+                UserName = user?.UserName;
+                Password = user?.Password;
+                Phone = user?.phone;
+                Email = user?.email;
+                Authorized = user?.Status == "pending" ? false : true;
+                //MessageBox.Show($"{Type}, {Name}, {UserName}, {Password}, {Phone},{ Email}");
+            }
+            else
+            {
+                Text = "Create New User";
+            }
+            CreateUserCommand = new CreateUserCommand(this, navigationStore, navigationService);
+            EditUserCommand = new EditUserCommand(this, navigationStore, navigationService);
+            CloseModalCommand = new CloseModalCommand(navigationStore);
+            
         }
     }
 }

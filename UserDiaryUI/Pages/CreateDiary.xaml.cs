@@ -20,18 +20,18 @@ namespace UserDiaryUI.Pages
     /// <summary>
     /// Interaction logic for CreateDiary.xaml
     /// </summary>
-    public partial class CreateDiary : Window
+    public partial class CreateDiary : UserControl
     {
         public CreateDiary()
         {
             InitializeComponent();
-            DataContext = new CreateDiaryViewModel();
+            //DataContext = new CreateDiaryViewModel();
         }
 
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+        //private void Cancel_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Close();
+        //}
 
     }
 }
