@@ -27,7 +27,7 @@ namespace UserDiaryUI
         {
             //Stores
 
-            _cache = new CacheStore();
+            _cache = CacheStore.GetCache();
             _navigationStore = new NavigationStore();
             _modalNavigationStore = new ModalNavigationStore();
             
@@ -35,11 +35,12 @@ namespace UserDiaryUI
         protected override void OnStartup(StartupEventArgs e)
         {
             //Server Connection
-
-            if (_cache.Cache.currentUser is not null)
+            //MessageBox.Show(_cache.currentUser.display());
+            if (_cache.currentUser.Id != 0)
             {
+                CreateHomeViewModel().Navigate();
             }
-            CreateWelcomeViewModel().Navigate();
+            else CreateWelcomeViewModel().Navigate();
 
             MainWindow = new MainWindow()
             {
@@ -90,7 +91,7 @@ namespace UserDiaryUI
         {
             return new AppNavigationService<UserProfileViewModel>(
                 _navigationStore, 
-                () => new UserProfileViewModel(_cache.Cache, CreateProfileViewModel()), 
+                () => new UserProfileViewModel(_cache, CreateProfileViewModel()), 
                 CreateNavigationBarViewModel);
         }
 
@@ -98,7 +99,7 @@ namespace UserDiaryUI
         {
             return new AppNavigationService<UsersViewModel>(
                 _navigationStore, 
-                () => new UsersViewModel(_cache.Cache, CreateUserViewModel(), _modalNavigationStore,"Users"), 
+                () => new UsersViewModel(CreateUserViewModel(), _modalNavigationStore,"Users"), 
                 CreateNavigationBarViewModel);
 
         }
@@ -107,7 +108,7 @@ namespace UserDiaryUI
         {
             return new AppNavigationService<UsersViewModel>(
                 _navigationStore,
-                () => new UsersViewModel(_cache.Cache, CreateAdminViewModel(), _modalNavigationStore, "Admins"),
+                () => new UsersViewModel(CreateAdminViewModel(), _modalNavigationStore, "Admins"),
                 CreateNavigationBarViewModel);
 
         }
@@ -116,7 +117,7 @@ namespace UserDiaryUI
         {
             return new AppNavigationService<UserDiariesViewModel>(
                 _navigationStore,
-                () => new UserDiariesViewModel(_cache.Cache),
+                () => new UserDiariesViewModel(_cache),
                 CreateNavigationBarViewModel);
 
         }
@@ -126,6 +127,7 @@ namespace UserDiaryUI
             return new NavigationBarViewModel(
                 CreateHomeViewModel(),
                 CreateDiaryViewModel(),
+                CreateFeedViewModel(),
                 CreateProfileViewModel(),
                 CreateUserViewModel(),
                 CreateAdminViewModel(),
@@ -134,6 +136,12 @@ namespace UserDiaryUI
                 _modalNavigationStore);
         }
 
-
+        private INavigationService CreateFeedViewModel()
+        {
+            return new AppNavigationService<FeedViewModel>(
+                _navigationStore,
+                () => new FeedViewModel(),
+                CreateNavigationBarViewModel);
+        }
     }
 }

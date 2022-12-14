@@ -62,11 +62,11 @@ namespace UserDiaryClient // Note: actual namespace depends on the project name.
             //    Connect(Convert.ToString(ip), "Hello I'm Device 2...");
             //}).Start();
             //Client.instance.ConnectToServer();
-            Client.instance.ConnectToServer((int)ClientPackets.login);
-            dynamic res = Client.instance.tcp.Result();
-            //Client.instance.tcp.Login();
-            //Console.ReadLine();
-            Client.instance.Disconnect();
+            //Client.instance.ConnectToServer((int)ClientPackets.login);
+            //dynamic res = Client.instance.tcp.Result();
+            ////Client.instance.tcp.Login();
+            ////Console.ReadLine();
+            //Client.instance.Disconnect();
         }
 
         static void Connect(string server, string message)

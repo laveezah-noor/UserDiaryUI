@@ -22,7 +22,7 @@ namespace UserDiaryUI.ViewModels
         private DiaryListViewModel _diaryListViewModel;
         public ModalUserViewModel _modalUserViewModel;
         private ObservableCollection<DiaryViewModel> _diaries;
-        public string Name => Cache.getCache().currentUser.Name;
+        public string Name => CacheStore.GetCache().CurrentUser.Name;
 
         public ObservableCollection<DiaryViewModel> Diaries
         {
@@ -53,7 +53,7 @@ namespace UserDiaryUI.ViewModels
         public ICommand CreateDiary { get; }
 
         public HomeViewModel(CacheStore cache, INavigationService navigationService, ModalNavigationStore modalNavigationStore) {
-            UserDiary.User user = cache.Cache.currentUser;
+            UserDiary.User user = cache.CurrentUser;
 
             if(user.userDiaries is not null && user.userDiaries.diaries.Count != 0)
             {

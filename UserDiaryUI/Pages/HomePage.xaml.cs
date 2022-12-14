@@ -48,5 +48,10 @@ namespace UserDiaryUI.Pages
             this.Background = null;
             CreateNewPopUp.IsOpen = false;
         }
+
+        private void listDiaries_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

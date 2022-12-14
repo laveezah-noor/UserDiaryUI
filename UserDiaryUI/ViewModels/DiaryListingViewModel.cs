@@ -53,7 +53,7 @@ namespace UserDiaryUI.ViewModels
         public ICommand CreateDiary { get; }
 
         public DiaryListingViewModel(CacheStore cache, INavigationService navigationService, ModalNavigationStore modalNavigationStore) {
-            UserDiary.User user = cache.Cache.currentUser;
+            UserDiary.User user = cache.currentUser;
 
             if(user.userDiaries is not null && user.userDiaries.diaries.Count != 0)
             {

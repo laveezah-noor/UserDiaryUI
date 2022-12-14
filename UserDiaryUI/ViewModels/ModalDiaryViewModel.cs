@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +18,7 @@ namespace UserDiaryUI.ViewModels
             public string _content;
             private string _createdAt;
             private string _lastModified;
+            private bool _privacy;
             //private string _userName;
             //private string _password;
             //private string _email;
@@ -97,6 +97,15 @@ namespace UserDiaryUI.ViewModels
                     OnPropertyChanged(nameof(Content));
                 }
             }
+            public bool Privacy
+            {
+                get { return _privacy; }
+                set
+                {
+                    _privacy = value;
+                    OnPropertyChanged(nameof(Privacy));
+                }
+            }
             public bool hasDiary { get; set; }
 
             public ICommand CreateDiaryCommand { get; }
@@ -115,6 +124,7 @@ namespace UserDiaryUI.ViewModels
                     Content = diary?.Content;
                     CreatedAt = diary?.CreatedAt.ToString();
                     LastModified = diary?.LastUpdate.ToString();
+                    Privacy = diary is not null ? diary.privacy: false;
 
             }
             else

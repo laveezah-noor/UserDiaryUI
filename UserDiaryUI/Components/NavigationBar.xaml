@@ -43,7 +43,17 @@
                     Tag="DiaryPage"
                     Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\list-view-icon-70.png"/>
             </Button>
+            
+            <Button
+                Command="{Binding NavigateFeedCommand}"
+                Style="{StaticResource textBtn}">
+                <Image
+                    Margin="5"
 
+                    Tag="DiaryPage"
+                    Source="C:\Users\lnoor\source\repos\UserDiaryUI\UserDiaryUI\Images\feed-icon-96.png"/>
+            </Button>
+            
             <Button
                 Command="{Binding NavigateUsersCommand}"
                 >

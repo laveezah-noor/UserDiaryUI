@@ -27,10 +27,12 @@ namespace UserDiaryUI.Commands
 
         public override void Execute(object? parameter)
         {
-            dynamic res = Cache.getCache().currentUser.CreateDiary(_viewModel.Name, _viewModel.Content);
+            //MessageBox.Show(Cache.getCache().currentUser.display());
+            dynamic res = Cache.getCache().currentUser.CreateDiary(_viewModel.Name, _viewModel.Content, _viewModel.Privacy);
             if ((int)res["Status"] == 200)
             {
                 MessageBox.Show((string)res["Response"]);
+                CacheStore.GetCache().CurrentUser = Cache.getCache().currentUser;
                 _modalNavigationStore.Close();
             }
             else if ((int)res["Status"] == 400)

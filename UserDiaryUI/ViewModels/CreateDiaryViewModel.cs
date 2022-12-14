@@ -12,6 +12,7 @@ namespace UserDiaryUI.ViewModels
     {
         private string _name;
         private string _content;
+        private bool _privacy;
 
         public string Name
         {
@@ -30,6 +31,16 @@ namespace UserDiaryUI.ViewModels
             {
                 _content = value;
                 OnPropertyChanged(nameof(Content));
+            }
+        }
+        
+        public bool Privacy
+        {
+            get { return _privacy; }
+            set
+            {
+                _privacy = value;
+                OnPropertyChanged(nameof(Privacy));
             }
         }
 

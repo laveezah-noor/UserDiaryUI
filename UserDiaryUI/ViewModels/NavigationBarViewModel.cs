@@ -13,9 +13,12 @@ namespace UserDiaryUI.ViewModels
 {
     public class NavigationBarViewModel : ViewModelBase
     {
-        public bool userType => Cache.getCache().currentUser.Type == Types.admin.ToString();
+        public bool userType => CacheStore.GetCache().CurrentUser.Type == Types.admin.ToString();
+
+        //public bool userType = false;
         public ICommand NavigateHomeCommand { get; }
         public ICommand NavigateDiariesCommand { get; }
+        public ICommand NavigateFeedCommand { get; }
         public ICommand NavigateProfileCommand { get; }
         public ICommand NavigateUsersCommand { get; }
         public ICommand NavigateAdminsCommand { get; }
@@ -25,6 +28,7 @@ namespace UserDiaryUI.ViewModels
         public NavigationBarViewModel(
             INavigationService homeNavigationService,
             INavigationService diaryNavigationService,
+            INavigationService feedNavigationService,
             INavigationService profileNavigationService,
             INavigationService usersNavigationService,
             INavigationService adminsNavigationService,
@@ -35,8 +39,10 @@ namespace UserDiaryUI.ViewModels
         {
             NavigateHomeCommand = new NavigateCommand(homeNavigationService);
             NavigateDiariesCommand = new NavigateCommand(diaryNavigationService);
+            NavigateFeedCommand = new NavigateCommand(feedNavigationService);
             NavigateProfileCommand = new NavigateCommand(profileNavigationService);
             LogoutPopupCommand = new CreateWarningModalCommand(loginNavigationService, modalNavigationStore, null, "Logout");
+            //userType = CacheStore.GetCache().CurrentUser.Type == Types.admin.ToString();
             if (userType)
             {
             NavigateUsersCommand = new NavigateCommand(usersNavigationService);

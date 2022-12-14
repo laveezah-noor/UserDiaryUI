@@ -26,10 +26,12 @@ using UserDiaryUI.Service;
 
         public override void Execute(object? parameter)
             {
-            dynamic res = Cache.getCache().currentUser.UpdateDiary(_viewModel._id, _viewModel.Name, _viewModel.Content);
+            dynamic res = Cache.getCache().currentUser.UpdateDiary(_viewModel._id, _viewModel.Name, _viewModel.Content, _viewModel.Privacy);
             if ((int)res["Status"] == 200)
             {
                 MessageBox.Show((string)res["Response"]);
+
+                CacheStore.GetCache().CurrentUser = Cache.getCache().currentUser;
                 _modalNavigationStore.Close();
             }
             else if ((int)res["Status"] == 400)

@@ -53,8 +53,9 @@ namespace UserDiaryUI.ViewModels
         public string _userType { get; }
 
 
-        public UsersViewModel(UserDiary.Cache cache, INavigationService navigationService, ModalNavigationStore modalNavigationStore, string userType)
+        public UsersViewModel(INavigationService navigationService, ModalNavigationStore modalNavigationStore, string userType)
         {
+            Cache cache = Cache.getCache();
             if (cache.UserList.UsersList.Count !=0)
             {
                 _userType = userType;

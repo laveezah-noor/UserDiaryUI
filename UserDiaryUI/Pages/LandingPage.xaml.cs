@@ -61,32 +61,32 @@ namespace UserDiaryUI.Pages
             //    SubWindow.Source = new Uri("./ProfilePage.xaml", UriKind.Relative);
             //}
         }
-            private void LogoutPopUp(object sender, MouseButtonEventArgs e)
-        {
-            DisableMainPage();
-        }
-        private void DisableMainPage()
-        {
-            MainPage.IsEnabled = false; 
-            this.Background = Brushes.LightGray; 
-            logoutPopUp.IsOpen = true;
-        }
+        //    private void LogoutPopUp(object sender, MouseButtonEventArgs e)
+        //{
+        //    DisableMainPage();
+        //}
+        //private void DisableMainPage()
+        //{
+        //    MainPage.IsEnabled = false; 
+        //    this.Background = Brushes.LightGray; 
+        //    logoutPopUp.IsOpen = true;
+        //}
         
-        private void Cancel_Click(object sender, RoutedEventArgs e)
-        {
-            EnableMainPage();
-        }
+        //private void Cancel_Click(object sender, RoutedEventArgs e)
+        //{
+        //    EnableMainPage();
+        //}
         
-        private void EnableMainPage()
-        {
-            MainPage.IsEnabled = true; 
-            this.Background = null; 
-            logoutPopUp.IsOpen = false;
-        }
+        //private void EnableMainPage()
+        //{
+        //    MainPage.IsEnabled = true; 
+        //    this.Background = null; 
+        //    logoutPopUp.IsOpen = false;
+        //}
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
     }
 }

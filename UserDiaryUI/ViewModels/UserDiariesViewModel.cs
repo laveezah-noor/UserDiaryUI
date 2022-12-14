@@ -49,7 +49,7 @@ namespace UserDiaryUI.ViewModels
 
         
 
-        public UserDiariesViewModel(Cache cache)
+        public UserDiariesViewModel(CacheStore cache)
         {
             UserDiary.User user = cache.currentUser;
             List<Dictionary<string, object>> list = user.DisplayDiaryLists();

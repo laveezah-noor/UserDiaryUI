@@ -28,7 +28,7 @@ namespace UserDiaryUI.Commands
 
         public void Execute(object? parameter)
         {
-            Cache.getCache().Logout();
+            CacheStore.GetCache().Logout();
             _modalNavigationStore.Close();
             _navigationService.Navigate();
         }

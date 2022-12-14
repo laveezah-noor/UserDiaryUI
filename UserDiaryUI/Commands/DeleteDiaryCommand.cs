@@ -40,7 +40,11 @@ namespace UserDiaryUI.Commands
             //}
 
 
-            if ((int)res["Status"] == 200) _navigationStore.Close();
+            if ((int)res["Status"] == 200) {
+
+                CacheStore.GetCache().CurrentUser = Cache.getCache().currentUser;
+            _navigationStore.Close();
+            }
             else if ((int)res["Status"] == 400)
             {
                 MessageBox.Show((string)res["Response"]);

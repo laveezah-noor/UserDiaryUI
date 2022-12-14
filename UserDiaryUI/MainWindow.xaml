@@ -48,6 +48,10 @@
                 <views:UserDiariesPage/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewmodels:FeedViewModel}">
+                <views:FeedPage/>
+            </DataTemplate>
+            
             <DataTemplate DataType="{x:Type viewmodels:ModalUserViewModel}">
                 <components:UserModal/>
             </DataTemplate>

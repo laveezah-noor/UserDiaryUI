@@ -9,17 +9,18 @@ using System.Windows.Navigation;
 using System.Xml.Linq;
 using UserDiary;
 using UserDiaryUI.Service;
+using UserDiaryUI.Stores;
 using UserDiaryUI.ViewModels;
 
 namespace UserDiaryUI.Commands
 {
     public class UpdateProfileCommand : CommandBase
     {
-        private readonly Cache _cache;
+        private readonly CacheStore _cache;
         private readonly UserProfileViewModel _userProfileViewModel;
         private readonly INavigationService _navigationService;
 
-        public UpdateProfileCommand( UserProfileViewModel profileViewModel, Cache cache, INavigationService navigationService)
+        public UpdateProfileCommand( UserProfileViewModel profileViewModel, CacheStore cache, INavigationService navigationService)
         {
             _cache = cache;
             _userProfileViewModel = profileViewModel;
@@ -40,6 +41,8 @@ namespace UserDiaryUI.Commands
                 Utility.ValidatePhone(_userProfileViewModel.Phone) : true))
             {
                 _cache.currentUser.UpdateUser(_userProfileViewModel.Name, _userProfileViewModel.Password, _userProfileViewModel.Phone, _userProfileViewModel.Email);
+
+                CacheStore.GetCache().CurrentUser = Cache.getCache().currentUser;
                 MessageBox.Show("Updated");
             }
             else

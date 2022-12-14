@@ -22,6 +22,7 @@ namespace UserDiaryUI.ViewModels
         public string Content => _diary.Content;
         public DateTime CreatedAt => _diary.CreatedAt;
         public DateTime LastUpdate => _diary.LastUpdate;
+        public bool Privacy => _diary.privacy;
 
         public ICommand EditDiary { get; set; }
         public ICommand DeleteDiary { get; set; }

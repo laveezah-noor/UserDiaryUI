@@ -14,7 +14,7 @@ using utils;
 using System.Net.Http;
 using System.Windows;
 
-namespace UserDiaryClient
+namespace UserDiaryUI.Scripts
 {
     public class Client
     {
@@ -43,13 +43,14 @@ namespace UserDiaryClient
 
         }
         //private void Start()
-        private void Start(int requestId)
+        private void Start(int requestId, Dictionary<string, string> request)
         {
             tcp = new TCP();
             tcp.requestId = requestId;
+            tcp.request = request;
         }
         //public void ConnectToServer()
-        public void ConnectToServer(int requestId)
+        public void ConnectToServer(int requestId, Dictionary<string, string> request)
         {
             if (tcp != null) {
                 InitializeClientData();
@@ -64,10 +65,16 @@ namespace UserDiaryClient
             {
                 //Start();
                 //ConnectToServer();
-                Start(requestId);
-                ConnectToServer(requestId);
+                Start(requestId, request);
+                ConnectToServer(requestId, request);
             }
         }
+
+        public TcpClient getSocket()
+        {
+            return tcp.socket;
+        }
+
         public void Disconnect()
         {
             tcp.Disconnect();
@@ -116,7 +123,8 @@ namespace UserDiaryClient
             private byte[] receiveBuffer;
             public int requestId;
             public bool requestFinished = false;
-                private static ManualResetEvent connectDone = new ManualResetEvent(false);
+            private static ManualResetEvent connectDone = new ManualResetEvent(false);
+            public Dictionary<string, string> request;
             Dictionary<string, object> response;
 
             //public TCP(int id)
@@ -223,6 +231,7 @@ namespace UserDiaryClient
             {
                 try
                 {
+
                     int _byteLength = stream.EndRead(_result);
                     if (_byteLength <= 0)
                     {
@@ -231,16 +240,18 @@ namespace UserDiaryClient
                     byte[] _data = new byte[_byteLength];
                    Array.Copy(receiveBuffer, 0, _data, 0, _byteLength);
                     dynamic res = HandleData(_data);
-                    MessageBox.Show(requestFinished.ToString());
+                    //MessageBox.Show($"Welcome Done: {requestFinished}");
+                    //if (stream.CanWrite) { MessageBox.Show("Stsream can write"); }
                     if (requestFinished)
                     {
-                        if (requestId == (int)ClientPackets.login) { ClientSend.Login(); }
-                        else if (requestId == (int)ClientPackets.register) { ClientSend.Register(); }
-                        requestFinished = false;
+                        if (requestId == (int)ClientPackets.login) { ClientSend.Login(request); }
+                        else if (requestId == (int)ClientPackets.register) { ClientSend.Register(request); }
+                    requestFinished = false;
                     }
                     response = res["Data"];
                     receivedData.Reset(res["Status"]);
                     stream.BeginRead(receiveBuffer, 0, receiveBuffer.Length, ReceiveCallback, null);
+
                 }
                 catch (Exception err)
                 {
@@ -257,7 +268,7 @@ namespace UserDiaryClient
                 }
                 else
                 {
-                    Console.WriteLine("Connect again");
+                    MessageBox.Show("Connect again");
                     return null;
                 }
             }

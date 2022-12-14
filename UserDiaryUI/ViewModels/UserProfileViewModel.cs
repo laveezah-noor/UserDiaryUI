@@ -7,6 +7,7 @@ using System.Windows.Input;
 using UserDiary;
 using UserDiaryUI.Commands;
 using UserDiaryUI.Service;
+using UserDiaryUI.Stores;
 
 namespace UserDiaryUI.ViewModels
 {
@@ -93,7 +94,7 @@ namespace UserDiaryUI.ViewModels
         }
         public ICommand UpdateCommand { get; }
 
-        public UserProfileViewModel(Cache cache, INavigationService navigationService)
+        public UserProfileViewModel(CacheStore cache, INavigationService navigationService)
         {
             User user = cache.currentUser;
             Type = user.Type;

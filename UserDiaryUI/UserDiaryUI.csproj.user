@@ -19,6 +19,9 @@
     <Compile Update="Pages\DiaryPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\FeedPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\HomePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -58,6 +61,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\DiaryPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\FeedPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\HomePage.xaml">

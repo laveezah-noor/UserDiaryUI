@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using UserDiary;
-using UserDiaryClient;
+using UserDiaryUI.Scripts;
 using UserDiaryUI.Service;
 using UserDiaryUI.Stores;
 using UserDiaryUI.ViewModels;
@@ -27,22 +29,28 @@ namespace UserDiaryUI.Commands
         public override void Execute(object? parameter)
         {
             //MessageBox.Show($" Username: {_loginViewModel.UserName}\n Password:{_loginViewModel.Password}");
-
-            Client.instance.ConnectToServer((int)ClientPackets.login);
-            Dictionary<string, object> res = Client.instance.tcp.Result();
-
-            //dynamic res = Cache.getCache().UserLog(_loginViewModel.UserName, _loginViewModel.Password);
-            //dynamic res = _cache.UserLog("admin", "admin");
-            if ((Int32)res["Status"] == 200)
+            Dictionary<string,string> request = new Dictionary<string, string>()
             {
-                MessageBox.Show(res["Response"].ToString());
-                User currentUser = (User)res["Response"];
-                //Cache.getCache().currentUser = (User)res["Response"];
-                //_navigationService.Navigate();
-            Client.instance.Disconnect();
+                {"username", _loginViewModel.UserName },
+                {"password", _loginViewModel.Password },
 
-            } else MessageBox.Show($" Response Status: {res["Status"]}\n Response: {res["Response"]}");
-            Client.instance.Disconnect();
+            };
+            //dynamic res = Cache.getCache().UserLog(_loginViewModel.UserName, _loginViewModel.Password);
+            //dynamic res = Cache.getCache().UserLog("admin", "admin");
+            Client.instance.ConnectToServer((int)ClientPackets.login, request);
+            Dictionary<string, object> res = Client.instance.tcp.Result();
+            if (Convert.ToInt32(res["Status"]) == 200)
+            {
+                //MessageBox.Show($"{res["Response"]}, {res["RequestId"]}");
+                User currentUser = (User) res["Response"];
+                CacheStore.GetCache().CurrentUser = currentUser ;
+                _navigationService.Navigate();
+                //Client.instance.Disconnect();
+
+            }
+            else MessageBox.Show($" Response Status: {res["Status"]}\n Response: {res["Response"]}");
+            //Client.instance.Disconnect();
+            //}
             //MessageBox.Show("Wrong Input");
         }
     }

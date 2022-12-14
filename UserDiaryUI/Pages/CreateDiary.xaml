@@ -89,25 +89,37 @@
                         </Border>
 
                     </StackPanel>
-                    <Button
-                    Margin= "0, 20"
+                    <StackPanel
+                        
                         VerticalAlignment="Center"
-                        HorizontalAlignment="Right"
-                        >
-                        <Button.Style>
-                            <Style BasedOn="{StaticResource primaryBtn}" TargetType="{x:Type Button}">
-                                <Setter Property="Content" Value="Create"/>
-                                <Setter Property="Command" Value="{Binding CreateDiaryCommand}"/>
+                        Margin= "10, 20"
+                        
+                        Orientation="Horizontal">
 
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding hasDiary}" Value="True">
-                                        <Setter Property="Content" Value="Edit"/>
-                                        <Setter Property="Command" Value="{Binding EditDiaryCommand}"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
+                        <CheckBox
+                        IsChecked="{Binding Privacy}"
+                        Margin="10,10"
+                        x:Name="Type"
+                        Content="Public"
+                        />
+                        <Button
+                            Margin="200,0"
+                        >
+                            <Button.Style>
+                                <Style BasedOn="{StaticResource primaryBtn}" TargetType="{x:Type Button}">
+                                    <Setter Property="Content" Value="Create"/>
+                                    <Setter Property="Command" Value="{Binding CreateDiaryCommand}"/>
+
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding hasDiary}" Value="True">
+                                            <Setter Property="Content" Value="Edit"/>
+                                            <Setter Property="Command" Value="{Binding EditDiaryCommand}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Border>
